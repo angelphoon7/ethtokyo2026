@@ -1,6 +1,6 @@
 # 07C — Hold resolution: live payment and pre-sign gate spike
 
-**Final verdict for the latest resume: HOLD. The live controlled risk-HOLD gate passed; settled payment and protected-signer bypass gates remain open.**
+**Final verdict for the latest resume: PARTIAL / BLOCKED on one input. A separate-process protected signer now holds live risk, changed-quote, Intercepta-error and bypass cases at zero signatures. The one allowed Base Sepolia payment is BLOCKED: the payer private key has not been placed in the signer's Git-ignored key file.** See the "Protected-signer resume" section below. The earlier controlled risk-HOLD paragraph below is retained as history.
 
 **Latest resume, 2026-09-25 at 22:36–22:42 UTC:** the owner confirmed this repository and requested only the remaining three gates. A sponsor-documented historical fixture now produces an actual Intercepta risk HOLD on a real captured local HTTPS 402: **local-only ALLOW → live-risk HOLD, zero cryptographic signer calls and zero signatures**. The signer used for this negative case was ephemeral, unfunded and in-process; it proves neither funded settlement nor deployment isolation. The owner's zero-score/empty-traits ALLOW rule remains a **demo policy, not proof that an address is safe**. No full product build was started.
 
@@ -315,14 +315,43 @@ Commands/results for this resume:
 
 Total authenticated address scans now recorded across 07C: **9** (**7 HTTP 200**, including the schema-rejected discovery response, and **2 HTTP 404**). This resume did not repeat the completed positive live probe or original offline suite. No funds were spent, no authorization signatures generated, and no full build begun.
 
+### Protected-signer resume — 2026-09-25, 23:47–23:53 UTC
+
+The owner's [payer-readiness evidence](spike-7c/evidence/payer-readiness.json) (Base Sepolia, block 47304531, 2026-09-25 23:02 UTC) records payer address `0x4a599d033E1295E93bbFB5feA17aB44b2CbAD9fD`, **20 USDC**, an owner cap of **0.1 USDC (100000 atomic)**, one intended payment, and a live unpaid 402 from `https://x402.org/protected` with zero payer signatures. It contains no key. `.env` holds only `INTERCEPTA_API_KEY`; **no payer private key is available to this session**, and none was searched for.
+
+**Design.** The key, owner policy and risk scan moved out of the agent process into [signer-service.mjs](spike-7c/signer/signer-service.mjs), a separate process listening on loopback. It fetches the seller's 402 itself, applies the local policy, runs the live Intercepta scan of the selected `payTo`, and only then issues a single-use approval bound to that exact quote. `POST /sign` re-checks the decoded EIP-712 typed data (types, domain, sender, recipient, amount, validity window, nonce) against the approved quote before the one call to the key. Its counters are the authoritative signature count. The agent side, [agent/](spike-7c/agent/), contains only a remote-signer stub and a purchase helper; a test asserts it has no key material, no `process.env`, no file access and no import of the signer module. [owner-policy.json](spike-7c/signer/owner-policy.json) allows one endpoint and one recipient, per-call and task budget **10000 atomic (0.01 USDC)**, deliberately tighter than the owner's 0.1 USDC cap; the signer refuses to start if its budget exceeds `ownerCapAtomic`.
+
+**Verdict: PARTIAL.** Criteria for the spike's PASS:
+
+| # | Criterion | Result | Evidence | Command |
+| --- | --- | --- | --- | --- |
+| 1 | Real live Intercepta response mapped honestly to an action | **PASS** | [live-signer-negative.json](spike-7c/evidence/x402/live-signer-negative.json), [held audit](spike-7c/evidence/x402/signer-audit-held.jsonl): fixture scan HTTP 200, score 100, four traits, 812 ms → HOLD `KNOWN_RISK_TRAITS_REPORTED`. Payee scan HTTP 200, score 0, no traits, 928 ms → owner-assumption ALLOW. | `npm run live:negative` |
+| 2 | Real 402 from a working paid endpoint; allowed payment actually settled | **BLOCKED** | Real 402 obtained live through the signer (approval on `x402.org/protected`). **No payment, no settlement, no transaction reference.** Needs the payer key in `signer/.env.signer`. | `npm run signer`, then `npm run live:payment` (not yet run) |
+| 3 | Held case: local policy passes, live Intercepta holds, zero payer signatures | **PASS (ephemeral, separate process)** | Quote hash `be5d1551…c7fb` locally allowed, then held by live risk; `signatures: 0`, `signerInvocations: 0`, seller saw two unpaid requests and no payment header. | `npm run live:negative` |
+| 4 | Mutated-quote, unknown/error and bypass cases: zero payer signatures | **PASS (ephemeral, separate process) for live runs; offline controls PASS** | Six post-approval mutations (`payTo`, `amount`, `asset`, `network`, validity, sender) each refused, 6 of 6, signatures 0. Intercepta error (invalid key → HTTP 403) → HOLD `RISK_UNKNOWN`, signatures 0. Bypass: no approval, forged approval id, default auto-pay wrapper, agent purchase tool and a key-export route all yield zero signatures. Offline: 10 signer controls, plus the historical suite, pass. | `npm run live:negative`, `npm run test:signer` |
+| 5 | No agent-visible tool or key can reach another funded signer | **PARTIAL** | Agent surface is a remote stub with no key, env access or file access (static test); the runner asserts no payer key in its own environment. **Not proven:** OS-level isolation. The signer is a separate process but runs as the same OS user, so an agent with a general shell could read a key file or edit code. A separate account or container is not provisioned. | `npm run test:signer` |
+
+**Important limits.** Criteria 3 and 4 ran against a signer using its own generated, unfunded, in-memory key that the launcher never sees. That proves the enforcement path and counters at a process boundary, but **not** the funded owner key. The same code path will be exercised on the funded signer by the payment runner, which first runs unapproved and changed-quote attempts (must yield 0 signatures), then one exact allowed payment, then replay, budget and bypass attempts. The runner aborts unless the signer's address equals the owner's payer address. The owner's zero-score/empty-traits ALLOW rule is still a demo assumption, not proof of address safety.
+
+**Commands and results.**
+
+- `npm run test:signer`: **10 passed / 0 failed**, offline controls with an ephemeral unfunded key and injected scan/challenge; labelled SIMULATED where injected.
+- `npm test` (historical suite): **25 passed / 0 failed** at ~23:51 UTC. This regenerated two historical evidence files; they were restored to their committed versions so the 22-check record cited above stays unchanged.
+- `npm run live:negative`: **exit 0**, 2026-09-25 23:52:26–23:52:33 UTC. **An earlier attempt at 23:51:57 UTC held the first scenario with `CHALLENGE_NOT_402`**: the signer's own request to `x402.org/protected` did not return a 402 that time; the HTTP status was not recorded, an immediate curl and a node request both returned 402, and it did not reproduce. It failed closed. The diagnostics now record the status. The live payment runner should treat a repeat as a retryable hold, not a payment failure.
+- New Intercepta calls: 3 valid-key scans, all HTTP 200 (payee 928 ms; fixture 812 ms and, on the agent tool's repeat quote, 291 ms) plus 1 deliberate invalid-key call (HTTP 403, 244 ms). These are single observations, not a latency benchmark.
+- Versions unchanged: Node 24.18.0, `@x402/*` 2.27.0, `viem` now pinned at 2.56.9 in `package.json` (it was only transitive). Doc URLs and access dates are unchanged from the sources table above.
+- SIMULATED: everything in `signer.test.mjs` (injected scan/challenge). The live runs simulate nothing except that the payer key is ephemeral and unfunded.
+
+**Smallest remaining step (the human's part).** Put the owner's payer private key for `0x4a59…D9fD` into the Git-ignored file `spike-7c/signer/.env.signer` (template: [.env.example](spike-7c/signer/.env.example)), then run `npm run signer` in one terminal and `npm run live:payment` in another. The signer verifies the key derives to the expected address before it starts. Do not paste the key into chat or a commit.
+
 ### Remaining dependencies and final disposition
 
-1. A protected signer connection and its public Base Sepolia payer address, funded with the required test asset; an exact owner-approved total/per-call spend policy. A public address alone is insufficient. The signing key and enforced policy must be outside the purchasing agent's access.
-2. One real allowed payment through that boundary, with on-chain/facilitator settlement evidence and usable paid output; no sentinel or offline result can satisfy it.
-3. Held, changed-quote and bypass attempts against the deployed protected signer, with zero signatures and no alternate funded signing route available to the agent.
+1. **Payer key placement** (above). Gates 2 and the funded half of 4/5 depend on it. The public address, funding (20 USDC) and 0.1 USDC cap are now supplied.
+2. One real allowed payment through the signer, with on-chain settlement evidence and usable paid output; no sentinel or offline result can satisfy it. **Runner written and syntax-checked, not executed.**
+3. Optional hardening for criterion 5: run the signer under a separate OS account or container so that shell access alone cannot read its key file.
 
 The repository, completed 07B input, conditional demo scope, and controlled risk-HOLD dependencies are resolved. Event eligibility remains a separate submission matter. Customer need remains unproven under the chosen sponsor-demo scope. Missing funded-signing access prevents the last two technical gates from being executed; it is not evidence of a failed payment or a successful isolation test.
 
-**HOLD.** The live negative gate now passes; settlement and protected-signer enforcement are still unproven. No full product build is authorized by this result.
+**PARTIAL, BLOCKED on the payer key.** The live negative and bypass gates now pass at a separate-process signer boundary with an ephemeral key; settlement and funded-key enforcement are unproven. No full product build is authorized by this result, and [07D](07D_GO_NO_GO_DECISION.md)'s condition 2 is not yet met.
 
-**One next action:** identify the owner's wallet/signing setup, then provision or connect the protected Base Sepolia signer with the public payer address and exact test-USDC spend cap. Preserve the completed live risk-HOLD evidence rather than rerunning it to substitute for the missing payment.
+**One next action:** place the payer key in `spike-7c/signer/.env.signer`, then run the signer and `npm run live:payment`. Preserve the completed live evidence rather than rerunning it to substitute for the missing payment.

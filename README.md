@@ -4,6 +4,8 @@ Status: **TECHNICAL HOLD — live key verified; risk semantics/fixture, protecte
 
 Read [07C_HOLD_SPIKE_REPORT.md](07C_HOLD_SPIKE_REPORT.md) for findings and evidence. This is an experiment, not a submission-ready product.
 
+The owner supplied the completed [07B problem-validation report](07B_POST_FREEZE_PROBLEM_VALIDATION.md) on 25 September 2026; it is preserved unchanged here. Its missing-input blocker is resolved, but its verdict remains **HOLD** with customer need unproven. A technical PASS would not by itself clear that product gate or approve full Step 8. The latest 07C update reconciles this input without repeating tests or API calls.
+
 ```powershell
 cd spike-7c
 npm.cmd ci --ignore-scripts --no-audit --no-fund
@@ -23,7 +25,7 @@ The first command scans the previously captured actual payTo; the second obtains
 
 The live responses contained `toxicScore: 0` and `traits: []`. The buyer currently maps this to `unknown` because coverage/unknown-address semantics remain unverified. This is our conservative hold policy, not an API assertion that either address is risky or unknown. No automatic allow mapping is enabled.
 
-Latest resume: the existing 22 offline checks were not rerun. Two additional sponsor-published historical addresses returned HTTP 404, yielding no usable negative-risk response. `node --env-file=.env sponsor-subject-probe.mjs` reproduces those read-only probes; [their evidence](spike-7c/evidence/sponsor-historical-scans.json) is separate from the successful original scans. They are not Discord fixtures or captured risk-held seller quotes. The report contains the remaining blockers and a prepared sponsor question.
+Last experiment resume (21:39–21:42 UTC): the existing 22 offline checks were not rerun. Two additional sponsor-published historical addresses returned HTTP 404, yielding no usable negative-risk response. `node --env-file=.env sponsor-subject-probe.mjs` reproduces those read-only probes; [their evidence](spike-7c/evidence/sponsor-historical-scans.json) is separate from the successful original scans. They are not Discord fixtures or captured risk-held seller quotes. The report contains the remaining blockers and a prepared sponsor question.
 
 Integration files: [capture.mjs](spike-7c/capture.mjs), [scan.mjs](spike-7c/scan.mjs), [guard.mjs](spike-7c/guard.mjs), [live-probe.mjs](spike-7c/live-probe.mjs). Live trace: [live-gate.json](spike-7c/evidence/live-gate.json). The guard returns an authorization payload only if given a trusted signing backend and approved risk decision; this spike supplies neither in a live run. A deployment must put the backend and policy outside the purchasing agent's filesystem/process/tool permissions. JavaScript closures do not establish that isolation.
 

@@ -4,15 +4,17 @@
 
 A fresh supported HTTP 402 and authenticated Intercepta response were obtained in the same guarded run. The API returned `toxicScore: 0` and `traits: []`; the buyer conservatively held pending coverage semantics, with zero downstream signer calls. **22 offline checks passed.** No payer authorization, paid retry, settlement, or delivered paid result was obtained. The negative risk-based sponsor-value demonstration and a deployed non-bypassable signer remain unproven. This does not clear the product HOLD or authorize Step 8.
 
-**Latest resume, 2026-09-25 at 21:39–21:42 UTC:** only missing prerequisites/experiments were investigated. The 22 completed offline checks were **not rerun**. Two new authenticated scans of sponsor-published historical subjects returned HTTP 404, not a risk verdict. The Discord fixture, exact zero-score semantics, completed 07B report, repository confirmation, protected funded signer and owner spend cap are still missing. See the resume findings below; no additional successful payment or live risk-held quote is claimed.
+**Latest input review, 2026-09-25 from 22:11 UTC:** the owner supplied the completed [07B problem-validation report](07B_POST_FREEZE_PROBLEM_VALIDATION.md). Its missing-input blocker is **resolved**; its verdict is **HOLD — TARGETED EVIDENCE OR SPIKE REQUIRED**, with customer need unproven. This document review introduced no new experiment results; the 22 completed offline checks were not rerun. Technical HOLD remains pending sponsor fixture/coverage semantics, a protected funded signer and an exact owner spend policy. Repository confirmation and event eligibility remain open.
+
+**Previous experiment resume, 2026-09-25 at 21:39–21:42 UTC:** only missing prerequisites/experiments were investigated. Two authenticated scans of sponsor-published historical subjects returned HTTP 404, not a risk verdict. The completed 07B report was unavailable at that time; its later receipt is reconciled below. No additional successful payment or live risk-held quote is claimed.
 
 ## Scope, dates and inputs
 
 - Work date: **25 September 2026**. First recorded clock: **21:05:23 UTC / 22:05:23 Europe/London**; final findings review: **21:13:29 UTC / 22:13:29 Europe/London**. Evidence timestamps use UTC. This first go/no-go pass finished within the requested two-hour timebox; access dependencies stopped the live experiments early.
 - Credential follow-up: **21:20:55–21:23:53 UTC**, followed by report updates. The owner supplied the key in Git-ignored `spike-7c/.env`; Node loaded it with `--env-file=.env`. Three authenticated read-only API calls were made. No key value was printed or committed.
 - Repository inspected: `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`. It initially contained only `.git`, with no commits or project files. The enclosing workspace is not itself a Git repository. The intended-repository clarification had not been answered at report time.
-- Read the supplied Step 7C text, `07_PROJECT_FREEZE.md`, `00_HACKATHON_CONTEXT.md`, and `07B_POST_FREEZE_PROBLEM_VALIDATION_PROMPT.md`. The user's request to execute **7C** defines this task. The 7B attachment is a prompt, **not the completed validation report**; its request to perform independent research was not treated as a separate user task.
-- **Missing controlling input:** `07B_POST_FREEZE_PROBLEM_VALIDATION.md`. Preserve the HOLD specified by 7C; do not invent that report's findings. The IDE's `test-tokyo26/09_TECHNICAL_SPIKE_REPORT.md` was absent from this workspace. No previous simulated spike was reused or credited.
+- Initially read the supplied Step 7C text, `07_PROJECT_FREEZE.md`, `00_HACKATHON_CONTEXT.md`, and `07B_POST_FREEZE_PROBLEM_VALIDATION_PROMPT.md`. The user's request to execute **7C** defines this task. The initial 7B attachment was a prompt; its request to perform independent research was not treated as a separate user task.
+- **Controlling input received and reviewed from 22:11 UTC:** [07B_POST_FREEZE_PROBLEM_VALIDATION.md](07B_POST_FREEZE_PROBLEM_VALIDATION.md), supplied from Downloads and copied unchanged into this repository. Its HOLD and evidence gaps are reconciled below. The IDE's `test-tokyo26/09_TECHNICAL_SPIKE_REPORT.md` was absent from this workspace. No previous simulated spike was reused or credited.
 - At the first pass, no Intercepta/payer credentials were available. **The Intercepta credential blocker is now resolved.** Protected signer, owner-selected spend cap and sponsor-certified known-risk fixture remain unavailable. The owner was asked for the event Discord fixture address/source; no response was available at follow-up review time.
 
 ## Versions and official sources
@@ -156,11 +158,11 @@ The initial repository had no code to classify as pre-event. Prior project-speci
 
 This work uses real local commits for evidence capture, boundary checks and the report; nothing was pushed or submitted. AI assistance is disclosed in [README.md](README.md). Public visibility of the remote, account participation, submission materials and prize qualification are not established. The official rules' prompt/artifact disclosure requirements still need a submission review.
 
-Product HOLD remains. Missing operator evidence includes an actual unattended paid workflow, frequency/cost of locally allowed risky counterparties, acceptable screening latency and false positives, and why existing limits/manual hold are insufficient. No operator interview, incident-frequency evidence, willingness to adopt, unique novelty, safety guarantee, merchant identity or delivery assurance was established here.
+Product HOLD remains, consistent with the now-received [completed 07B report](07B_POST_FREEZE_PROBLEM_VALIDATION.md). Missing operator evidence includes an actual unattended paid workflow, frequency/cost of locally allowed risky counterparties, acceptable screening latency and false positives, and why existing limits/manual hold are insufficient. No operator interview, incident-frequency evidence, willingness to adopt, unique novelty, safety guarantee, merchant identity or delivery assurance was established here. Receiving the report resolves an input dependency, not these evidence gaps.
 
 ## Resume findings — missing experiments only
 
-**Date: 2026-09-25, beginning 21:39:02 UTC.** Re-read the freeze and master context from Downloads and reviewed the supplied 07C report. Searches in Downloads, Documents, Desktop, Music and named files in Codex attachments found the **07B prompt**, but not the completed `07B_POST_FREEZE_PROBLEM_VALIDATION.md`. This search does not establish that the document is absent elsewhere. No replacement validation report was invented. The working repository remains `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`; its identity is observed, while the owner's explicit confirmation is pending.
+**Historical resume: 2026-09-25, beginning 21:39:02 UTC.** Re-read the freeze and master context from Downloads and reviewed the supplied 07C report. Searches in Downloads, Documents, Desktop, Music and named files in Codex attachments found the **07B prompt**, but not the completed `07B_POST_FREEZE_PROBLEM_VALIDATION.md`. This search did not establish that the document was absent elsewhere; the owner later supplied it, as recorded below. No replacement validation report was invented. The working repository remains `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`; its identity is observed, while the owner's explicit confirmation is pending.
 
 ### Sponsor information retrieval
 
@@ -187,7 +189,7 @@ The adapter discarded unvalidated error bodies. HTTP 404 alone does not establis
 | Controlled captured quote held because of live risk | **HOLD** | No live flagged response or eligible fixture available; no fabricated quote or risk label substituted. |
 | Allowed testnet payment with settlement and usable output | **HOLD** | Protected signer, funded public address, owner cap and justified allow policy not supplied. No signing or payment attempted. |
 | Zero authorizations for live held and deployed bypass paths | **HOLD** | Existing SDK/sentinel results preserved; no deployed funded signer available for the remaining proof. |
-| Completed 07B and intended-repository confirmation | **HOLD** | Required clarification requested; no completed report or confirmation received by this review. |
+| Completed 07B and intended-repository confirmation | **HOLD at 21:42 UTC** | Neither had arrived at that review. The report was subsequently received; repository confirmation remains open. See the input review below. |
 
 The completed local checks remain evidence of their original, limited pass; this table does not reset them. Missing inputs prevented the remaining experiments from being completed. No architecture, UI or broader product build was started.
 
@@ -199,14 +201,35 @@ This request is ready for the authenticated event channel or [sponsor contact ro
 
 ### Review of the updated decision
 
-**TECHNICAL HOLD remains warranted.** The live API works for the original recipient, but the required allowed settlement, known-risk decision change and funded-signer isolation are still unproven. The two 404 responses are not evidence of technical success or grounds to reinterpret zero as safe. Product validation also remains open without the completed 07B/operator evidence. The owner's later choice between a validated product and a narrowly described sponsor demo has not been made by this report; neither can be represented as validated demand here.
+**TECHNICAL HOLD remains warranted.** The live API works for the original recipient, but the required allowed settlement, known-risk decision change and funded-signer isolation are still unproven. The two 404 responses are not evidence of technical success or grounds to reinterpret zero as safe. The subsequent completed 07B report confirms that operator evidence remains missing. The owner's later choice between a validated product and a narrowly described sponsor demo has not been made by this report; neither can be represented as validated demand here.
+
+## Completed 07B received — input and decision reconciliation
+
+**Review began 2026-09-25 at 22:11 UTC.** Read the completed report supplied at `C:\Users\Jun Yee\Downloads\07B_POST_FREEZE_PROBLEM_VALIDATION.md` and preserved an unchanged [repository copy](07B_POST_FREEZE_PROBLEM_VALIDATION.md). Both copies have SHA-256 `890130FFFC44607E1EC6AF3A8F70CF9E6099AD3F6D3F46C18503C361661E725B`. This supersedes the earlier missing-report status.
+
+The supplied report identifies its inputs as `07_PROJECT_FREEZE(5).md` and `00_HACKATHON_CONTEXT(20260925-204751).md`. Its stated buyer-side, owner-scoped pre-sign concept matches this spike's scope; byte-for-byte identity with the differently named freeze/context read during 07C was not established. Its desk-research findings are attributed to the supplied report, not presented as newly independently verified external facts. Its proposed experiments were reviewed as context for the existing 07C request; receipt did not initiate outreach or a separate research task.
+
+| Gate | Effect of receiving completed 07B |
+| --- | --- |
+| Required validation document | **PASS for receipt and review only.** The completed report is now available. |
+| Problem validation | **HOLD.** 07B reports no direct operator evidence for a recurring, locally allowed risky payment that external screening would materially improve. |
+| Differentiation | **Unproven.** 07B rejects the current finalist-differentiation claim because of overlapping prior art; this spike establishes no superiority. |
+| Live technical feasibility | **TECHNICAL HOLD.** 07C already adds a real captured quote, authenticated responses and a limited uncertainty hold to the desk report. It still lacks a justified live risk hold, allowed settlement and deployed signer isolation. |
+| Product progression | **Full Step 8 is not approved.** Technical success alone would support a narrowly described sponsor demo with customer need still unproven. |
+
+07B's section 6 example is explicitly a **format fixture**, not a captured transaction or risk verdict. It supplies no new negative case or payment evidence. The real HTTP captures and live API observations in this report retain their original provenance and limits.
+
+For the separate problem gate, 07B proposes two independent operator/maintainer conversations: at least one credible workflow demonstrating a material gap in existing controls, plus a second independent signal of recurrence or high consequence. That is a proposed threshold for reconsidering HOLD, not completed interviews or statistical market validation. No operator outreach was performed in this review. An owner decision to continue as a sponsor demo would still leave customer need unproven; no such decision is inferred from supplying this file.
+
+**Verification:** the repository copy matches the supplied file's SHA-256. No offline tests, live API calls, signer attempts or payments were repeated during this document update. All experiment counts and outcomes above remain unchanged.
 
 ## Blockers and disposition
 
 1. Sponsor-confirmed zero/unknown coverage semantics and a known-risk fixture yielding a decision-changing live response. **The credential itself now works.**
 2. Protected testnet signer outside agent access, funded balance and owner-selected exact spend policy.
 3. A locally permitted captured negative quote and a settled positive purchase with usable output.
-4. Completed controlling 07B report, intended repository confirmation and event-track eligibility evidence.
+4. Intended repository confirmation and event-track eligibility evidence. **The completed 07B input is now received; its product HOLD remains.**
+5. For a validated-product claim: the operator evidence identified by completed 07B. This is separate from the technical spike and cannot be satisfied by a successful sponsor fixture alone.
 
 These are missing prerequisites, not successful gates. No inspected SDK ordering defect forces a stop: the supported pre-sign control exists. If live semantics cannot govern it, a funded deployment is bypassable, or the only negative remains synthetic/local-policy rejection after access is supplied, stop the Intercepta prize build. Do not expand into architecture or UI to compensate.
 

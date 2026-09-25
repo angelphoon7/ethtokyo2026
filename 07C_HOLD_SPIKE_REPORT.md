@@ -4,6 +4,8 @@
 
 A fresh supported HTTP 402 and authenticated Intercepta response were obtained in the same guarded run. The API returned `toxicScore: 0` and `traits: []`; the buyer conservatively held pending coverage semantics, with zero downstream signer calls. **22 offline checks passed.** No payer authorization, paid retry, settlement, or delivered paid result was obtained. The negative risk-based sponsor-value demonstration and a deployed non-bypassable signer remain unproven. This does not clear the product HOLD or authorize Step 8.
 
+**Latest resume, 2026-09-25 at 21:39–21:42 UTC:** only missing prerequisites/experiments were investigated. The 22 completed offline checks were **not rerun**. Two new authenticated scans of sponsor-published historical subjects returned HTTP 404, not a risk verdict. The Discord fixture, exact zero-score semantics, completed 07B report, repository confirmation, protected funded signer and owner spend cap are still missing. See the resume findings below; no additional successful payment or live risk-held quote is claimed.
+
 ## Scope, dates and inputs
 
 - Work date: **25 September 2026**. First recorded clock: **21:05:23 UTC / 22:05:23 Europe/London**; final findings review: **21:13:29 UTC / 22:13:29 Europe/London**. Evidence timestamps use UTC. This first go/no-go pass finished within the requested two-hour timebox; access dependencies stopped the live experiments early.
@@ -28,6 +30,8 @@ All sources below were inspected on **2026-09-25**. Documentation claims are dis
 | [Sandbox access](https://intercepta.io/ethglobal) | Source claim: request form issues an emailed sandbox key with 1,000 calls, potentially after a few hours. No request was submitted using an invented identity or unauthorized account. |
 | [Tokyo Intercepta prize](https://ethglobal.com/events/tokyo2026/prizes) | Source claim: testnet payments permitted; live screening must govern a decision; risk coverage is mainnet; risky examples are pinned in Discord; successful and held flows plus a public repo/API feedback are required. No fixture was accessible in this session. |
 | [Event rules](https://ethglobal.com/events/tokyo2026/info/details) | Source claim: Classic project-specific work must start during the event; continuity differs; meaningful history and AI disclosure matter. These rules do not establish this project's eligibility. |
+| [Risk Screener product page](https://intercepta.io/products/risk-screener) | Latest-resume source claim: 0–100 scoring and block/warn/clear actions for the broader product. It does not establish the Quick Scan endpoint's zero-score/coverage mapping. |
+| [Sponsor MEV scam analysis](https://intercepta.io/blog/mev-bot-scam-overview) | Sponsor-published historical subjects provided a separate read-only lead. They are not the event Discord fixtures and were not used as payment recipients. |
 
 Some pages failed through the web viewer; the API Markdown and sandbox page were successfully read over HTTPS separately. Shell networking initially returned `EACCES`; approved network access allowed package installation and unpaid probes. This was an access restriction, not a protocol failure.
 
@@ -154,6 +158,49 @@ This work uses real local commits for evidence capture, boundary checks and the 
 
 Product HOLD remains. Missing operator evidence includes an actual unattended paid workflow, frequency/cost of locally allowed risky counterparties, acceptable screening latency and false positives, and why existing limits/manual hold are insufficient. No operator interview, incident-frequency evidence, willingness to adopt, unique novelty, safety guarantee, merchant identity or delivery assurance was established here.
 
+## Resume findings — missing experiments only
+
+**Date: 2026-09-25, beginning 21:39:02 UTC.** Re-read the freeze and master context from Downloads and reviewed the supplied 07C report. Searches in Downloads, Documents, Desktop, Music and named files in Codex attachments found the **07B prompt**, but not the completed `07B_POST_FREEZE_PROBLEM_VALIDATION.md`. This search does not establish that the document is absent elsewhere. No replacement validation report was invented. The working repository remains `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`; its identity is observed, while the owner's explicit confirmation is pending.
+
+### Sponsor information retrieval
+
+- Rechecked official prize/API material and searched public official sources. The event's Discord connection opens an OAuth authorization flow; this session has no authenticated access to the pinned channel. Plugin discovery for Discord found no relevant integration. No unrelated connector was installed and no private Discord messages were retrieved.
+- The [Risk Screener product page](https://intercepta.io/products/risk-screener) describes a 0–100 score and action labels for the wider product. **Interpretation:** this cannot be substituted for the specific Quick Scan API contract: our response contained only `toxicScore` and `traits`, with no action or coverage indicator. The zero/empty result is still not established as either adequately screened/clear or insufficient coverage.
+- The [sponsor's scam analysis](https://intercepta.io/blog/mev-bot-scam-overview) names historical addresses. They were scanned as a bounded alternative lead, not relabeled as Discord-pinned fixtures. Their onchain history was not independently audited here. No wallet interacted with them.
+
+### New live observations
+
+Executed only `node --env-file=.env sponsor-subject-probe.mjs`. No offline suite, prior successful buyer scan, or prior bypass test was repeated. [Reproduction script](spike-7c/sponsor-subject-probe.mjs) and [timestamped evidence](spike-7c/evidence/sponsor-historical-scans.json):
+
+| Sponsor-published subject | Scan start UTC | HTTP | Latency | Interpretation |
+| --- | --- | ---: | ---: | --- |
+| `0x8232aa8c7d721ad5191954371a97a69ddcdcc492`, contract in scam walkthrough | 21:40:15.312 | 404 | 953 ms | No accepted risk response; unknown hold. |
+| `0x39e27d5c1729b8a79970a3ed2926b460f07d9592`, example of attacker-triggered withdrawals | 21:40:16.282 | 404 | 362 ms | No accepted risk response; unknown hold. |
+
+The adapter discarded unvalidated error bodies. HTTP 404 alone does not establish its cause: no conclusion about coverage, address cleanliness or maliciousness follows. These calls produced no nonempty traits and did not resolve the negative case. **No quote was captured for either address**, no signer was instantiated by this script and no payment was attempted. Its zero authorization count is not a new guarded-signer proof. Total authenticated address-scan attempts across this spike: five, with three HTTP 200 responses and two HTTP 404 responses.
+
+### Remaining experiment decisions
+
+| Missing requirement | Status after this resume | Evidence / dependency |
+| --- | --- | --- |
+| Discord-pinned risky fixture and exact zero/unknown semantics | **HOLD** | Public lookup and alternative probes did not resolve them; authenticated sponsor information needed. |
+| Controlled captured quote held because of live risk | **HOLD** | No live flagged response or eligible fixture available; no fabricated quote or risk label substituted. |
+| Allowed testnet payment with settlement and usable output | **HOLD** | Protected signer, funded public address, owner cap and justified allow policy not supplied. No signing or payment attempted. |
+| Zero authorizations for live held and deployed bypass paths | **HOLD** | Existing SDK/sentinel results preserved; no deployed funded signer available for the remaining proof. |
+| Completed 07B and intended-repository confirmation | **HOLD** | Required clarification requested; no completed report or confirmation received by this review. |
+
+The completed local checks remain evidence of their original, limited pass; this table does not reset them. Missing inputs prevented the remaining experiments from being completed. No architecture, UI or broader product build was started.
+
+### Prepared sponsor question — not sent
+
+> We are testing an ETHGlobal Tokyo buyer guard with `GET /api/public/v2/extension/account/{address}/quick-scan`. For the actual selected payTo `0x209693Bc6afc0C5328bA36FaF03C514EF312287C`, HTTP 200 returned exactly `{"toxicScore":0,"traits":[]}`. Does that mean adequate mainnet coverage with no detected risks, or can an unseen/unindexed/unsupported address return the same result? What response identifies insufficient coverage? Please share the event's pinned known-risk address and expected current response/trait. Two addresses in your published MEV scam analysis returned HTTP 404; what does 404 mean for this endpoint? We will use a controlled negative quote and will not pay the risky subject.
+
+This request is ready for the authenticated event channel or [sponsor contact route](https://intercepta.io/ethglobal). No message was sent on the owner's behalf. An authenticated sponsor answer, not another simulated test, is the next dependency.
+
+### Review of the updated decision
+
+**TECHNICAL HOLD remains warranted.** The live API works for the original recipient, but the required allowed settlement, known-risk decision change and funded-signer isolation are still unproven. The two 404 responses are not evidence of technical success or grounds to reinterpret zero as safe. Product validation also remains open without the completed 07B/operator evidence. The owner's later choice between a validated product and a narrowly described sponsor demo has not been made by this report; neither can be represented as validated demand here.
+
 ## Blockers and disposition
 
 1. Sponsor-confirmed zero/unknown coverage semantics and a known-risk fixture yielding a decision-changing live response. **The credential itself now works.**
@@ -165,4 +212,4 @@ These are missing prerequisites, not successful gates. No inspected SDK ordering
 
 **TECHNICAL HOLD**
 
-**One next action:** obtain the sponsor's documented known-risk fixture and clarification of zero-score/unknown-address semantics, then verify a real risk-based hold before attempting funded work.
+**One next action:** get an authenticated sponsor answer to the prepared fixture/coverage question above so the missing live risk decision can be tested without inventing semantics.

@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-09-25T21:40:16.644Z",
+  "rows": [
+    {
+      "address": "0x8232aa8c7d721ad5191954371a97a69ddcdcc492",
+      "label": "contract in sponsor scam walkthrough",
+      "source": "https://intercepta.io/blog/mev-bot-scam-overview",
+      "sourceClass": "SPONSOR_PUBLISHED_HISTORICAL_SUBJECT_NOT_EVENT_FIXTURE",
+      "scan": {
+        "subject": "0x8232aa8c7d721ad5191954371a97a69ddcdcc492",
+        "startedAt": "2026-09-25T21:40:15.312Z",
+        "completedAt": "2026-09-25T21:40:16.281Z",
+        "latencyMs": 953,
+        "status": 404,
+        "liveRequestMade": true,
+        "responseFields": [],
+        "observed": null,
+        "decision": "unknown",
+        "reason": "HTTP_OR_SCHEMA_UNKNOWN"
+      }
+    },
+    {
+      "address": "0x39e27d5c1729b8a79970a3ed2926b460f07d9592",
+      "label": "sponsor example of attacker-triggered withdrawals",
+      "source": "https://intercepta.io/blog/mev-bot-scam-overview",
+      "sourceClass": "SPONSOR_PUBLISHED_HISTORICAL_SUBJECT_NOT_EVENT_FIXTURE",
+      "scan": {
+        "subject": "0x39e27d5c1729b8a79970a3ed2926b460f07d9592",
+        "startedAt": "2026-09-25T21:40:16.282Z",
+        "completedAt": "2026-09-25T21:40:16.644Z",
+        "latencyMs": 362,
+        "status": 404,
+        "liveRequestMade": true,
+        "responseFields": [],
+        "observed": null,
+        "decision": "unknown",
+        "reason": "HTTP_OR_SCHEMA_UNKNOWN"
+      }
+    }
+  ],
+  "quoteCapturedForTheseSubjects": false,
+  "payerAuthorizationSignatures": 0,
+  "paymentMade": false
+}

@@ -177,7 +177,7 @@ test('caller mutation while scan is pending cannot change the captured snapshot'
 });
 
 test('unconfigured Intercepta adapter holds without fabricating a response', async () => {
-  // Tests never read or send an existing secret and never make a network call.
+  // Temporarily hide any existing credential; this test never makes a network call.
   const saved = process.env.INTERCEPTA_API_KEY;
   delete process.env.INTERCEPTA_API_KEY;
   try {

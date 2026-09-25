@@ -1,0 +1,183 @@
+{
+  "recordedAt": "2026-09-25T21:11:28.552Z",
+  "warning": "OFFLINE REPLAY ONLY. No key, crypto signing, paid retry, or settlement.",
+  "rows": [
+    {
+      "case": "unguarded SDK control",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 1,
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "UNGUARDED_OFFLINE_SENTINEL_CONTROL"
+    },
+    {
+      "case": "SDK abort hook control",
+      "rawSignerCalls": 0,
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_HOOK_CONTROL"
+    },
+    {
+      "case": "injected hold (NOT live risk)",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "unknown risk",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "missing risk",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "risk provider throws",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "wrong scan subject",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "exact terms / uncertain retry prevented",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 1,
+      "reserved": "10000",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "mutated payTo",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "mutated amount",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "mutated asset",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "mutated network",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "mutated expiry",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "mutated types",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "unguarded wrapper / protected signer",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "concurrency and approval theft",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "local endpoint rejection",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "one-shot approval cannot be reused",
+      "boundaryCalls": 2,
+      "rawSignerCalls": 1,
+      "reserved": "10000",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "caller mutation isolated by snapshot",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 1,
+      "reserved": "10000",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "actual adapter / missing key",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    }
+  ],
+  "comparison": [
+    {
+      "endpoint": "https://x402.org/protected",
+      "selected": {
+        "scheme": "exact",
+        "network": "eip155:84532",
+        "amount": "10000",
+        "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+        "payTo": "0x209693Bc6afc0C5328bA36FaF03C514EF312287C",
+        "maxTimeoutSeconds": 300,
+        "extra": {
+          "name": "USDC",
+          "version": "2"
+        }
+      },
+      "localOnly": "ALLOW_UNDER_TEST_POLICY_ONLY",
+      "plusLiveRisk": "BLOCKED_LIVE_KEY_REQUIRED",
+      "liveNegativeComparison": "UNPROVEN"
+    }
+  ]
+}

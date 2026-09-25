@@ -1,0 +1,6 @@
+{"at":"2026-09-25T23:52:31.118Z","event":"signer_started","address":"0xc0E4F00Ee29EB6C0d38242dBA04a443bF8625c83","policyId":"controlled-known-risk-local-allow","ephemeral":true}
+{"at":"2026-09-25T23:52:32.017Z","event":"quote_held_risk","quoteSha256":"be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb","subject":"0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570","riskDecision":"hold","reason":"KNOWN_RISK_TRAITS_REPORTED","status":200,"latencyMs":812,"traits":["known_scammer","blacklist","attack_money_target","fake_phishing_transfer"]}
+{"at":"2026-09-25T23:52:32.036Z","event":"sign_rejected","code":"NO_GUARD_APPROVAL"}
+{"at":"2026-09-25T23:52:32.051Z","event":"sign_rejected","code":"NO_GUARD_APPROVAL"}
+{"at":"2026-09-25T23:52:32.066Z","event":"sign_rejected","code":"NO_GUARD_APPROVAL"}
+{"at":"2026-09-25T23:52:32.423Z","event":"quote_held_risk","quoteSha256":"be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb","subject":"0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570","riskDecision":"hold","reason":"KNOWN_RISK_TRAITS_REPORTED","status":200,"latencyMs":291,"traits":["known_scammer","blacklist","attack_money_target","fake_phishing_transfer"]}

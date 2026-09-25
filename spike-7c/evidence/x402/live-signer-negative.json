@@ -1,0 +1,225 @@
+{
+  "startedAt": "2026-09-25T23:52:26.778Z",
+  "completedAt": "2026-09-25T23:52:33.925Z",
+  "evidenceClass": "LIVE_SEPARATE_PROCESS_SIGNER_EPHEMERAL_UNFUNDED_KEY_NO_PAYMENT",
+  "agentProcess": {
+    "PAYER_PRIVATE_KEY": false,
+    "INTERCEPTA_API_KEY": false,
+    "note": "agent-side runner holds neither the payer key nor the Intercepta key; the signer child loads its own"
+  },
+  "isolation": {
+    "processBoundary": true,
+    "osAccountBoundary": false,
+    "note": "Signer is a separate process, but same OS user; a separate account/container is not provisioned."
+  },
+  "fundedSignerTested": false,
+  "paymentAttempted": false,
+  "results": {
+    "mutatedAfterApproval": {
+      "startedAt": "2026-09-25T23:52:28.458Z",
+      "signerPid": 11700,
+      "signerAddress": "0xA8907b2b40D590d41a04586B15269CC1f9DC4D60",
+      "quote": {
+        "decision": "allow",
+        "quoteSha256": "af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844",
+        "scan": {
+          "status": 200,
+          "latencyMs": 928,
+          "decision": "allow",
+          "reason": "NO_SUSPICIOUS_ACTIVITIES_REPORTED",
+          "toxicScore": 0,
+          "traits": []
+        }
+      },
+      "refusals": {
+        "payTo": "MUTATED_TRANSFER",
+        "amount": "MUTATED_TRANSFER",
+        "asset": "MUTATED_DOMAIN",
+        "network": "MUTATED_DOMAIN",
+        "validityLater": "MUTATED_VALIDITY",
+        "from": "MUTATED_TRANSFER"
+      },
+      "stats": {
+        "status": 200,
+        "quoteRequests": 1,
+        "approvals": 1,
+        "holds": 0,
+        "signRequests": 6,
+        "signRejected": 6,
+        "signerInvocations": 0,
+        "signatures": 0,
+        "reserved": "10000"
+      },
+      "audit": [
+        {
+          "event": "signer_started"
+        },
+        {
+          "event": "quote_approved",
+          "quoteSha256": "af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "MUTATED_TRANSFER"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "MUTATED_TRANSFER"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "MUTATED_DOMAIN"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "MUTATED_DOMAIN"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "MUTATED_VALIDITY"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "MUTATED_TRANSFER"
+        }
+      ]
+    },
+    "riskHeld": {
+      "signerPid": 27724,
+      "signerAddress": "0xc0E4F00Ee29EB6C0d38242dBA04a443bF8625c83",
+      "quote": {
+        "decision": "hold",
+        "stage": "risk",
+        "reason": "KNOWN_RISK_TRAITS_REPORTED",
+        "quoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb",
+        "scan": {
+          "status": 200,
+          "latencyMs": 812,
+          "decision": "hold",
+          "toxicScore": 100,
+          "traits": [
+            "known_scammer",
+            "blacklist",
+            "attack_money_target",
+            "fake_phishing_transfer"
+          ]
+        }
+      },
+      "bypass": {
+        "noApproval": "NO_GUARD_APPROVAL",
+        "forgedApproval": "NO_GUARD_APPROVAL",
+        "defaultAutoPayWrapper": "NO_GUARD_APPROVAL",
+        "agentPurchaseTool": "HELD",
+        "exportKeyRoute": "NOT_FOUND"
+      },
+      "stats": {
+        "status": 200,
+        "quoteRequests": 2,
+        "approvals": 0,
+        "holds": 2,
+        "signRequests": 3,
+        "signRejected": 3,
+        "signerInvocations": 0,
+        "signatures": 0,
+        "reserved": "0"
+      },
+      "sellerRequests": [
+        {
+          "at": "2026-09-25T23:52:31.198Z",
+          "method": "GET",
+          "path": "/controlled-known-risk",
+          "paymentHeaderPresent": false
+        },
+        {
+          "at": "2026-09-25T23:52:32.128Z",
+          "method": "GET",
+          "path": "/controlled-known-risk",
+          "paymentHeaderPresent": false
+        }
+      ],
+      "audit": [
+        {
+          "event": "signer_started"
+        },
+        {
+          "event": "quote_held_risk",
+          "reason": "KNOWN_RISK_TRAITS_REPORTED",
+          "quoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb",
+          "traits": [
+            "known_scammer",
+            "blacklist",
+            "attack_money_target",
+            "fake_phishing_transfer"
+          ],
+          "status": 200,
+          "latencyMs": 812
+        },
+        {
+          "event": "sign_rejected",
+          "code": "NO_GUARD_APPROVAL"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "NO_GUARD_APPROVAL"
+        },
+        {
+          "event": "sign_rejected",
+          "code": "NO_GUARD_APPROVAL"
+        },
+        {
+          "event": "quote_held_risk",
+          "reason": "KNOWN_RISK_TRAITS_REPORTED",
+          "quoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb",
+          "traits": [
+            "known_scammer",
+            "blacklist",
+            "attack_money_target",
+            "fake_phishing_transfer"
+          ],
+          "status": 200,
+          "latencyMs": 291
+        }
+      ]
+    },
+    "interceptaError": {
+      "signerPid": 7148,
+      "quote": {
+        "decision": "hold",
+        "stage": "risk",
+        "reason": "RISK_UNKNOWN",
+        "quoteSha256": "af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844",
+        "scan": {
+          "status": 403,
+          "latencyMs": 244,
+          "decision": "unknown"
+        }
+      },
+      "refusalWithoutApproval": "NO_GUARD_APPROVAL",
+      "stats": {
+        "status": 200,
+        "quoteRequests": 1,
+        "approvals": 0,
+        "holds": 1,
+        "signRequests": 1,
+        "signRejected": 1,
+        "signerInvocations": 0,
+        "signatures": 0,
+        "reserved": "0"
+      },
+      "audit": [
+        {
+          "event": "signer_started"
+        },
+        {
+          "event": "quote_held_risk",
+          "reason": "RISK_UNKNOWN",
+          "riskDecision": "unknown",
+          "status": 403
+        },
+        {
+          "event": "sign_rejected"
+        }
+      ]
+    }
+  }
+}

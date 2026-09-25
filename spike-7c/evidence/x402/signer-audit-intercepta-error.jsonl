@@ -1,0 +1,3 @@
+{"at":"2026-09-25T23:52:33.404Z","event":"signer_started","address":"0x55632A7A69C1CD3CAE3584D3C3190e13c67A9616","policyId":"owner-base-sepolia-one-payment-x402-protected","ephemeral":true}
+{"at":"2026-09-25T23:52:33.857Z","event":"quote_held_risk","quoteSha256":"af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844","subject":"0x209693Bc6afc0C5328bA36FaF03C514EF312287C","riskDecision":"unknown","reason":"RISK_UNKNOWN","status":403,"latencyMs":244}
+{"at":"2026-09-25T23:52:33.876Z","event":"sign_rejected","code":"NO_GUARD_APPROVAL"}

@@ -1,0 +1,9 @@
+{
+  "startedAt": "2026-09-25T21:07:28.829Z",
+  "url": "https://x402-dotnet.azurewebsites.net/api/minimal/protected",
+  "latencyMs": 20002,
+  "error": "TimeoutError",
+  "cause": null,
+  "payerAuthorizationSignatures": 0,
+  "paidRetrySent": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "step-7c-presign-spike",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "test": "node --test guard.test.mjs"
+  },
+  "dependencies": {
+    "@x402/core": "2.27.0",
+    "@x402/evm": "2.27.0",
+    "@x402/fetch": "2.27.0"
+  }
+}

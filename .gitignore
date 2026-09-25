@@ -1,0 +1,8 @@
+node_modules/
+.npm-cache/
+.inspection/
+.env
+.env.*
+!.env.example
+*.key
+*.pem

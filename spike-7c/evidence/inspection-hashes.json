@@ -1,0 +1,25 @@
+﻿{
+    "recordedAt":  "2026-09-25T21:11:08.5403678Z",
+    "files":  [
+                  {
+                      "path":  "spike-7c/node_modules/@x402/fetch/dist/esm/index.mjs",
+                      "sha256":  "df19cfe324288677b4a3bdac79e902c5205891683093f516c11bb4e273a75681"
+                  },
+                  {
+                      "path":  "spike-7c/node_modules/@x402/core/dist/esm/client/index.mjs",
+                      "sha256":  "34a2c47aaf2cac790d9b7f4eb1f385d2ec2063bb42ab5de227119b945dc20d48"
+                  },
+                  {
+                      "path":  "spike-7c/node_modules/@x402/evm/dist/esm/chunk-3CXVARP6.mjs",
+                      "sha256":  "b99f05298b4e89ed16655376ba0cedeaa30ad1c1b584e49d1b62249179a2bcda"
+                  },
+                  {
+                      "path":  ".inspection/quick-scan-address.md",
+                      "sha256":  "5089a60742970decb407ee948e0f5bd13ecc3de6d3ef8f43f276b9e96989560b"
+                  },
+                  {
+                      "path":  ".inspection/api-overview.md",
+                      "sha256":  "f3b1e5dccb2284eb99aa1be62c9833ab35c896f6973541f8ef945dc40ec0da80"
+                  }
+              ]
+}

@@ -1,0 +1,9 @@
+{
+  "startedAt": "2026-09-25T21:07:28.478Z",
+  "url": "https://www.x402.org/protected",
+  "latencyMs": 340,
+  "error": "TypeError",
+  "cause": null,
+  "payerAuthorizationSignatures": 0,
+  "paidRetrySent": false
+}

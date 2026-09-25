@@ -1,0 +1,147 @@
+{
+  "startedAt": "2026-09-25T22:41:54.038Z",
+  "completedAt": "2026-09-25T22:41:55.321Z",
+  "fixture": {
+    "address": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+    "source": "https://intercepta.io/blog/how-stolen-crypto-moves-two-stage-pipeline",
+    "sourceClass": "SPONSOR_PUBLISHED_HISTORICAL_RISK_SUBJECT_NOT_DISCORD_FIXTURE",
+    "usage": "CONTROLLED_NEGATIVE_QUOTE_ONLY_NO_PAYMENT_TO_THIS_SUBJECT"
+  },
+  "endpoint": "https://127.0.0.1:58720/controlled-known-risk",
+  "selected": {
+    "scheme": "exact",
+    "network": "eip155:84532",
+    "amount": "10000",
+    "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "payTo": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+    "maxTimeoutSeconds": 300,
+    "extra": {
+      "name": "USDC",
+      "version": "2"
+    }
+  },
+  "selectedQuoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb",
+  "localPolicy": {
+    "endpoint": "https://127.0.0.1:58720/controlled-known-risk",
+    "resourceUrls": [
+      "https://127.0.0.1:58720/controlled-known-risk"
+    ],
+    "network": "eip155:84532",
+    "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "recipients": [
+      "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570"
+    ],
+    "perCall": "10000",
+    "taskBudget": "10000",
+    "maxTimeoutSeconds": 300,
+    "domainName": "USDC",
+    "domainVersion": "2"
+  },
+  "localPolicyClass": "CONTROLLED_NEGATIVE_TEST_POLICY_NO_SPEND_AUTHORIZATION",
+  "localOnly": "ALLOW_UNDER_CONTROLLED_TEST_POLICY",
+  "riskPolicy": "DEMO_HOLD_ON_KNOWN_SCAMMER_OR_BLACKLIST_TRAIT",
+  "zeroScorePolicy": "OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW",
+  "scan": {
+    "subject": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+    "startedAt": "2026-09-25T22:41:54.475Z",
+    "completedAt": "2026-09-25T22:41:55.320Z",
+    "latencyMs": 845,
+    "status": 200,
+    "liveRequestMade": true,
+    "responseFields": [
+      "toxicScore",
+      "traits"
+    ],
+    "observed": {
+      "toxicScore": 100,
+      "traits": [
+        {
+          "name": "known_scammer",
+          "risk": 100,
+          "description": "The address has a confirmed history of malicious activity, including scams, phishing, or other harmful behavior."
+        },
+        {
+          "name": "blacklist",
+          "risk": 100,
+          "description": "The address appears on external or internal blacklist sources due to prior involvement in high‑risk or malicious activity."
+        },
+        {
+          "name": "attack_money_target",
+          "risk": 85,
+          "description": "The address has received funds tied to exploits, wallet drainers, or other forms of attack‑related activity."
+        },
+        {
+          "name": "fake_phishing_transfer",
+          "risk": 45,
+          "description": "The address appears in transaction histories involving transfers linked to scam activity or phishing‑related operations."
+        }
+      ]
+    },
+    "schemaNotes": [
+      "LIVE_TRAITS_OMIT_DOCUMENTED_TXS_COUNT"
+    ],
+    "decision": "hold",
+    "reason": "KNOWN_RISK_TRAITS_REPORTED",
+    "message": "Held: known_scammer, blacklist.",
+    "policyBasis": "DEMO_HOLD_ON_KNOWN_SCAMMER_OR_BLACKLIST_TRAIT",
+    "matchedTraits": [
+      "known_scammer",
+      "blacklist"
+    ]
+  },
+  "outcome": "RISK_HELD",
+  "counts": {
+    "boundaryCalls": 0,
+    "rawSignerCalls": 0,
+    "reserved": "0",
+    "signerInvocations": 0,
+    "payerAuthorizationSignatures": 0
+  },
+  "signer": {
+    "publicAddress": "0xBDF36db315c1d5A0307a2509F6ECcd6d43A3A27E",
+    "type": "EPHEMERAL_UNFUNDED_VIEM_ACCOUNT_IN_PROCESS",
+    "isolationProven": false,
+    "privateKeyPersisted": false,
+    "sentinel": false
+  },
+  "paidRetrySent": false,
+  "settlement": null,
+  "requests": [
+    {
+      "at": "2026-09-25T22:41:54.367Z",
+      "method": "GET",
+      "path": "/controlled-known-risk",
+      "paymentHeaderPresent": false
+    }
+  ],
+  "trace": [
+    {
+      "event": "real_controlled_402_captured",
+      "at": "2026-09-25T22:41:54.385Z",
+      "quoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb"
+    },
+    {
+      "event": "local_policy_allowed",
+      "at": "2026-09-25T22:41:54.392Z",
+      "quoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb"
+    },
+    {
+      "event": "live_scan_started",
+      "at": "2026-09-25T22:41:54.475Z",
+      "subject": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+      "quoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb"
+    },
+    {
+      "event": "live_scan_completed",
+      "at": "2026-09-25T22:41:55.320Z",
+      "decision": "hold",
+      "reason": "KNOWN_RISK_TRAITS_REPORTED"
+    },
+    {
+      "event": "guard_completed",
+      "at": "2026-09-25T22:41:55.321Z",
+      "outcome": "RISK_HELD"
+    }
+  ],
+  "evidenceClass": "LIVE_RISK_HOLD_ON_REAL_CONTROLLED_HTTPS_402_WITH_ZERO_CRYPTOGRAPHIC_SIGNER_CALLS"
+}

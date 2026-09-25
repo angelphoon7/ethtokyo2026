@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-09-25T22:37:55.155Z",
+  "fixture": {
+    "address": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+    "source": "https://intercepta.io/blog/how-stolen-crypto-moves-two-stage-pipeline",
+    "sourcePublishedDate": "2026-07-23",
+    "sourceClass": "SPONSOR_PUBLISHED_HISTORICAL_RISK_SUBJECT_NOT_DISCORD_FIXTURE",
+    "sourceFinding": "Sponsor describes this address as the recipient of an August 2023 poisoning theft and a subsequent USDT blacklist.",
+    "expectedCurrentApiResponse": "UNVERIFIED; a historical source does not guarantee a current API verdict"
+  },
+  "scan": {
+    "subject": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+    "startedAt": "2026-09-25T22:37:54.194Z",
+    "completedAt": "2026-09-25T22:37:55.155Z",
+    "latencyMs": 938,
+    "status": 200,
+    "liveRequestMade": true,
+    "responseFields": [],
+    "observed": null,
+    "decision": "unknown",
+    "reason": "HTTP_OR_SCHEMA_UNKNOWN"
+  },
+  "quoteCaptured": false,
+  "signerInstantiated": false,
+  "payerAuthorizationSignatures": 0,
+  "paymentMade": false
+}

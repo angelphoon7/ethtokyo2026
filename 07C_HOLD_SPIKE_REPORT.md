@@ -1,16 +1,24 @@
 # 07C — Hold resolution: live payment and pre-sign gate spike
 
-**Decision: TECHNICAL HOLD. Zero/empty response now allowed under the owner's demo assumption; known-risk fixture and funded payment gates remain open.**
+**Final verdict for the latest resume: HOLD. The live controlled risk-HOLD gate passed; settled payment and protected-signer bypass gates remain open.**
 
-**Latest live follow-up, 2026-09-25 at 22:27 UTC: PASS for the live owner-policy path to a non-signing sentinel.** A fresh HTTP 402 and authenticated HTTP 200 scan returned `toxicScore: 0, traits: []`; the current adapter allowed under the owner's assumption, and the validating wrapper passed the exact transfer to the sentinel once. **Zero signatures, no paid retry, no settlement.** The supplied post-gate build prompt was reviewed; its full-build entry requirements remain unmet. Details and the smallest remaining spike appear below.
+**Latest resume, 2026-09-25 at 22:36–22:42 UTC:** the owner confirmed this repository and requested only the remaining three gates. A sponsor-documented historical fixture now produces an actual Intercepta risk HOLD on a real captured local HTTPS 402: **local-only ALLOW → live-risk HOLD, zero cryptographic signer calls and zero signatures**. The signer used for this negative case was ephemeral, unfunded and in-process; it proves neither funded settlement nor deployment isolation. The owner's zero-score/empty-traits ALLOW rule remains a **demo policy, not proof that an address is safe**. No full product build was started.
+
+| Requested gate | Current verdict | Evidence / limitation |
+| --- | --- | --- |
+| Documented fixture, real captured locally allowed quote, live risk HOLD, zero signatures | **PASS for controlled negative case** | [HTTPS capture](spike-7c/evidence/controlled-risk-402.json), [live scan and gate trace](spike-7c/evidence/controlled-risk-hold.json). Real API response, no injected verdict. |
+| One allowed Base Sepolia payment, settlement and usable result | **HOLD** | No protected funded signer connection, public payer address or exact owner spend cap supplied. No payment or settlement occurred. |
+| Agent cannot bypass protected funded signer | **HOLD** | No deployed protected signer available to test. The ephemeral account and earlier in-process checks do not satisfy this gate. |
+
+**Earlier live follow-up, 2026-09-25 at 22:27 UTC: PASS for the live owner-policy path to a non-signing sentinel.** A fresh HTTP 402 and authenticated HTTP 200 scan returned `toxicScore: 0, traits: []`; the current adapter allowed under the owner's assumption, and the validating wrapper passed the exact transfer to the sentinel once. **Zero signatures, no paid retry, no settlement.** This remains limited historical evidence, not a payment pass.
 
 **Human scope decision received:** [07D_GO_NO_GO_DECISION.md](07D_GO_NO_GO_DECISION.md) records a **conditional GO for a limited Intercepta sponsor demo once the remaining 07C technical tests pass**. Customer need remains explicitly unproven. The written scope-choice dependency is resolved; technical prerequisites and spend authorization are not supplied by that decision.
 
-A fresh supported HTTP 402 and authenticated Intercepta response were obtained in the earlier guarded run. The API returned `toxicScore: 0` and `traits: []`; the buyer then held pending coverage semantics, with zero downstream signer calls. **22 offline checks passed under that earlier policy.** No payer authorization, paid retry, settlement, or delivered paid result was obtained. The negative risk-based sponsor-value demonstration and a deployed non-bypassable signer remain unproven. This does not clear the product HOLD or authorize Step 8.
+A fresh supported HTTP 402 and authenticated Intercepta response were obtained in the earlier guarded run. The API returned `toxicScore: 0` and `traits: []`; the buyer then held pending coverage semantics, with zero downstream signer calls. **22 offline checks passed under that earlier policy.** No payer authorization, paid retry, settlement, or delivered paid result was obtained. The later controlled risk-HOLD now supplies the negative decision change; a deployed non-bypassable funded signer remains unproven. This does not clear the product HOLD or authorize Step 8.
 
-**Owner-policy change, 2026-09-25 at 22:21–22:23 UTC:** the owner explicitly instructed us to assume zero is safe and empty traits mean no suspicious activities reported. The demo now maps numeric zero plus an empty traits array to **ALLOW**, labeled as an owner assumption. Two targeted policy tests passed, including a replay reaching the non-signing sentinel once with the captured transfer terms. That policy-edit pass made no new API call, actual signature or payment; the later live run is recorded separately. Coverage clarification is no longer a prerequisite for this demo policy; a real risk-held quote and funded settlement remain unproven.
+**Owner-policy change, 2026-09-25 at 22:21–22:23 UTC:** the owner selected numeric zero plus an empty traits array as the demo **ALLOW** rule. Two targeted policy tests passed, including a replay reaching the non-signing sentinel once with the captured transfer terms. That policy-edit pass made no new API call, actual signature or payment; later live runs are recorded separately. The latest instruction expressly retains this as a demo policy without claiming address safety. Coverage clarification is not a prerequisite for that rule.
 
-**Input review, 2026-09-25 from 22:11 UTC:** the owner supplied the completed [07B problem-validation report](07B_POST_FREEZE_PROBLEM_VALIDATION.md). Its missing-input blocker is **resolved**; its verdict is **HOLD — TARGETED EVIDENCE OR SPIKE REQUIRED**, with customer need unproven. This document review introduced no new experiment results; the 22 completed offline checks were not rerun. Repository confirmation and event eligibility remain open.
+**Input review, 2026-09-25 from 22:11 UTC:** the owner supplied the completed [07B problem-validation report](07B_POST_FREEZE_PROBLEM_VALIDATION.md). Its missing-input blocker is **resolved**; its verdict is **HOLD — TARGETED EVIDENCE OR SPIKE REQUIRED**, with customer need unproven. This document review introduced no new experiment results; the 22 completed offline checks were not rerun. The repository was subsequently confirmed in the latest user request; event eligibility remains open.
 
 **Previous experiment resume, 2026-09-25 at 21:39–21:42 UTC:** only missing prerequisites/experiments were investigated. Two authenticated scans of sponsor-published historical subjects returned HTTP 404, not a risk verdict. The completed 07B report was unavailable at that time; its later receipt is reconciled below. No additional successful payment or live risk-held quote is claimed.
 
@@ -18,10 +26,10 @@ A fresh supported HTTP 402 and authenticated Intercepta response were obtained i
 
 - Work date: **25 September 2026**. First recorded clock: **21:05:23 UTC / 22:05:23 Europe/London**; final findings review: **21:13:29 UTC / 22:13:29 Europe/London**. Evidence timestamps use UTC. This first go/no-go pass finished within the requested two-hour timebox; access dependencies stopped the live experiments early.
 - Credential follow-up: **21:20:55–21:23:53 UTC**, followed by report updates. The owner supplied the key in Git-ignored `spike-7c/.env`; Node loaded it with `--env-file=.env`. Three authenticated read-only API calls were made. No key value was printed or committed.
-- Repository inspected: `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`. It initially contained only `.git`, with no commits or project files. The enclosing workspace is not itself a Git repository. The intended-repository clarification had not been answered at report time.
+- **Owner-confirmed repository:** `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`. It initially contained only `.git`, with no commits or project files. The enclosing workspace is not itself a Git repository. The latest user request resolves the earlier repository-confirmation dependency.
 - Initially read the supplied Step 7C text, `07_PROJECT_FREEZE.md`, `00_HACKATHON_CONTEXT.md`, and `07B_POST_FREEZE_PROBLEM_VALIDATION_PROMPT.md`. The user's request to execute **7C** defines this task. The initial 7B attachment was a prompt; its request to perform independent research was not treated as a separate user task.
 - **Controlling input received and reviewed from 22:11 UTC:** [07B_POST_FREEZE_PROBLEM_VALIDATION.md](07B_POST_FREEZE_PROBLEM_VALIDATION.md), supplied from Downloads and copied unchanged into this repository. Its HOLD and evidence gaps are reconciled below. The IDE's `test-tokyo26/09_TECHNICAL_SPIKE_REPORT.md` was absent from this workspace. No previous simulated spike was reused or credited.
-- At the first pass, no Intercepta/payer credentials were available. **The Intercepta credential blocker is now resolved.** Protected signer, owner-selected spend cap and sponsor-certified known-risk fixture remain unavailable. The owner was asked for the event Discord fixture address/source; no response was available at follow-up review time.
+- At the first pass, no Intercepta/payer credentials were available. **The Intercepta credential and documented known-risk fixture dependencies are now resolved.** The fixture comes from the sponsor's published investigation, not the private event Discord. A protected funded signer and exact owner spend cap remain unavailable; the owner was asked for the wallet/signing setup.
 
 ## Versions and official sources
 
@@ -36,10 +44,11 @@ All sources below were inspected on **2026-09-25**. Documentation claims are dis
 | [Quick Scan reference](https://docs.web3antivirus.io/reference/quick-scan-address), [Markdown/OpenAPI representation](https://docs.web3antivirus.io/reference/quick-scan-address.md) | Observed documentation only: GET endpoint, header authentication and response schema. Markdown revision timestamp: `2026-05-12T09:23:11.000Z`. |
 | [Deep Scan reference](https://docs.web3antivirus.io/reference/scan-address), [Getting Started](https://docs.web3antivirus.io/reference/getting-started-1), [Risk Library](https://docs.web3antivirus.io/reference/scam-and-risk-library) | Follow-up documentation inspection did not resolve zero-score versus unknown-address/coverage semantics or provide a certified known-risk address. The Deep Scan API itself was not called. |
 | [Sandbox access](https://intercepta.io/ethglobal) | Source claim: request form issues an emailed sandbox key with 1,000 calls, potentially after a few hours. No request was submitted using an invented identity or unauthorized account. |
-| [Tokyo Intercepta prize](https://ethglobal.com/events/tokyo2026/prizes) | Source claim: testnet payments permitted; live screening must govern a decision; risk coverage is mainnet; risky examples are pinned in Discord; successful and held flows plus a public repo/API feedback are required. No fixture was accessible in this session. |
+| [Tokyo Intercepta prize](https://ethglobal.com/events/tokyo2026/prizes/intercepta) | Rechecked in the latest resume: testnet payments permitted; live screening must govern a decision; risk data is mainnet; risky examples are pinned in Discord; successful and held flows plus a public repo/API feedback are required. The controlled case uses a separately documented historical subject, not a Discord pin. |
 | [Event rules](https://ethglobal.com/events/tokyo2026/info/details) | Source claim: Classic project-specific work must start during the event; continuity differs; meaningful history and AI disclosure matter. These rules do not establish this project's eligibility. |
 | [Risk Screener product page](https://intercepta.io/products/risk-screener) | Latest-resume source claim: 0–100 scoring and block/warn/clear actions for the broader product. It does not establish the Quick Scan endpoint's zero-score/coverage mapping. |
 | [Sponsor MEV scam analysis](https://intercepta.io/blog/mev-bot-scam-overview) | Sponsor-published historical subjects provided a separate read-only lead. They are not the event Discord fixtures and were not used as payment recipients. |
+| [Sponsor stolen-funds investigation](https://intercepta.io/blog/how-stolen-crypto-moves-two-stage-pipeline) | Published 2026-07-23; inspected in this resume. It identifies `0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570` with an August 2023 poisoning theft and subsequent USDT blacklist. This provides historical fixture provenance; the live API supplies the current risk response. |
 
 Some pages failed through the web viewer; the API Markdown and sandbox page were successfully read over HTTPS separately. Shell networking initially returned `EACCES`; approved network access allowed package installation and unpaid probes. This was an access restriction, not a protocol failure.
 
@@ -73,7 +82,7 @@ Other unpaid observations: the `www.x402.org` URL redirects to `x402.org` (301);
 
 ## Experiment 1 — Pre-sign enforcement
 
-**BLOCKED as a full experiment; PASS for SDK ordering, the limited in-process gate, the earlier live unknown-response hold and the current live owner-policy allow path to a sentinel.**
+**HOLD for deployed signer isolation; PASS for the limited pre-sign gate, including the latest real risk HOLD before any cryptographic signer call.** Earlier SDK ordering, unknown-hold and owner-policy sentinel evidence retains its original scope.
 
 Observed 2.27.0 call path (paths relative to `spike-7c/node_modules`):
 
@@ -91,7 +100,7 @@ The earlier version of [live-probe.mjs](spike-7c/live-probe.mjs) exercised: fres
 
 ## Experiment 2 — Live risk semantics
 
-**PARTIAL PASS: authenticated integration and observed schema. Allow mapping now uses the owner's explicit demo assumption; provider-confirmed coverage semantics and a live known-risk verdict remain unverified.** The original missing-key observation remains in Git history. It is superseded by these authenticated observations:
+**PASS for live allow/HOLD decision mapping under the stated demo policies.** The known-risk response is now observed live. Zero/empty coverage semantics remain unverified and are not presented as address safety. The original missing-key observation remains in Git history. Authenticated observations:
 
 | Subject and evidence | Start UTC, 2026-09-25 | HTTP | Latency | Observed response |
 | --- | --- | ---: | ---: | --- |
@@ -99,10 +108,13 @@ The earlier version of [live-probe.mjs](spike-7c/live-probe.mjs) exercised: fres
 | API documentation example `0x0d775e010f0b6c32c9468d43ba599ef47d596e47`, [example scan](spike-7c/evidence/intercepta-doc-example.json) | 21:22:03.946 | 200 | 7,603 ms | `toxicScore: 0`, `traits: []` |
 | Actual payTo inside the fresh-quote guard, [live trace](spike-7c/evidence/live-gate.json) | 21:23:38.406 | 200 | 429 ms | `toxicScore: 0`, `traits: []` |
 | Actual payTo inside the owner-policy guard, [new live trace](spike-7c/evidence/live-gate-owner-policy.json) | 22:27:15.216 | 200 | 906 ms | `toxicScore: 0`, `traits: []`; owner-assumption ALLOW |
+| Documented historical fixture, [initial discovery](spike-7c/evidence/documented-fixture-scan.json) | 22:37:54.194 | 200 | 938 ms | Adapter rejected schema; no risk verdict accepted. |
+| Same fixture, [redacted field diagnostic](spike-7c/evidence/documented-fixture-schema.json) | 22:38:20.536 | 200 | 922 ms | Score 100; four traits; each omitted `txsCount`. |
+| Same fixture as actual payTo in captured controlled quote, [live gate](spike-7c/evidence/controlled-risk-hold.json) | 22:41:54.475 | 200 | 845 ms | Score 100; `known_scammer`, `blacklist`, `attack_money_target`, `fake_phishing_transfer`; **HOLD**. |
 
 The two guarded responses' complete top-level field-name lists were exactly `toxicScore`, `traits`; no explicit coverage, chain, freshness or known/unknown-address status was returned. These timings are individual observations, not a latency benchmark. The documentation example is **not** certified as a known-risk fixture, and its empty response proves no negative case.
 
-Observed **documentation**: `GET https://api.web3antivirus.io/api/public/v2/extension/account/{address}/quick-scan`, authenticated by `X-API-KEY`. The documented JSON requires numeric `toxicScore` and array `traits`; each trait requires numeric `risk`, string `name`, numeric `txsCount`, string `description`. Names include `known_scammer` and `sanction_address`. **No nonempty trait object was observed live.** Numeric score bounds and unknown-address behavior were not defined in the inspected material; no threshold was invented.
+Observed **documentation**: `GET https://api.web3antivirus.io/api/public/v2/extension/account/{address}/quick-scan`, authenticated by `X-API-KEY`. The documented JSON requires numeric `toxicScore` and array `traits`; each trait requires numeric `risk`, string `name`, numeric `txsCount`, string `description`. **Observed discrepancy:** the actual nonempty response omits `txsCount` on all four traits. The adapter now accepts that specific omission, records `LIVE_TRAITS_OMIT_DOCUMENTED_TXS_COUNT`, and keeps the required risk/name/description types strict; a present invalid count remains unknown. It never invents transaction counts. The demo HOLD uses the reported `known_scammer` or `blacklist` trait names, without inventing a numeric score threshold.
 
 [scan.mjs](spike-7c/scan.mjs) reads `INTERCEPTA_API_KEY` locally, sends it only to the fixed official host, rejects redirects and limits a request to ten seconds. It retains selected response fields and field names, not request credentials or arbitrary error bodies. Current buyer mapping:
 
@@ -110,16 +122,16 @@ Observed **documentation**: `GET https://api.web3antivirus.io/api/public/v2/exte
 | --- | --- |
 | Valid HTTP 200, numeric score zero, empty traits | **ALLOW**: `NO_SUSPICIOUS_ACTIVITIES_REPORTED`, under `OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW`. Exercised with recorded data and the fresh 22:27 UTC API response. |
 | Missing key, timeout, HTTP/schema error | Unknown hold due to unavailable/invalid evidence. Missing-key test remains an explicitly offline control. |
-| Other valid score/trait combination, including zero with nonempty traits | Unknown hold pending review; none observed live in this run. |
-| Hold specifically because of known risk | Not enabled/validated by the available evidence. |
+| Valid response containing `known_scammer` or `blacklist` | **HOLD**: `KNOWN_RISK_TRAITS_REPORTED`, under `DEMO_HOLD_ON_KNOWN_SCAMMER_OR_BLACKLIST_TRAIT`; observed live. |
+| Other valid score/trait combination | Unknown hold pending review; zero with other nonempty traits does not allow. |
 
 The earlier zero-score hold was **our conservative interpretation**, not an Intercepta assertion that these addresses are unknown or dangerous. The owner has now replaced that policy with an explicit demo assumption: zero plus empty traits permits the risk gate. This does not establish provider coverage or a general safety guarantee. The original evidence files retain their historical unknown-hold reasons; the new mapping and targeted replay are recorded separately below.
 
-The scan subject was the same actual EVM payTo, using the sponsor's mainnet-data address endpoint without a testnet selector. No specific mainnet activity, identity or coverage was verified for it. A testnet quote does not establish mainnet risk. No sponsor-certified known-risk subject or controlled negative seller quote was obtained.
+Each guarded scan used its actual selected EVM payTo through the sponsor's mainnet-data endpoint without a testnet selector. The ordinary demo recipient has no separately verified activity/identity/coverage. The controlled negative recipient has sponsor-published historical provenance and an actual live flagged response. Its Base Sepolia quote does not itself establish mainnet risk or merchant identity. The fixture is not claimed to be an event Discord-certified example.
 
 ## Experiment 3 — Same-quote comparison
 
-**BLOCKED for incremental live sponsor value.** The identical captured EVM quote passes a deliberately explicit **unit-test policy**: fixed endpoint and resource alias, Base Sepolia, exact asset and recipient, per-call/task amount `10000`, timeout at most 300 seconds, expected domain. These limits were selected for an unpaid test and are not owner consent to payment.
+**PASS for a controlled incremental live risk decision; operator value remains unproven.** The earlier public demo quote passes its explicit test policy. The new controlled HTTPS quote separately passes a fixed local test policy for its endpoint, Base Sepolia, exact token and historical fixture recipient, amount `10000` and timeout 300 seconds. Each comparison uses identical terms within its A/B pair. These limits authorize no payment and do not establish an operator's real-world baseline.
 
 | Comparison using identical selected terms | Observed result |
 | --- | --- |
@@ -129,9 +141,9 @@ The scan subject was the same actual EVM payTo, using the sponsor's mainnet-data
 | Injected allow/hold controls | Exercise gate mechanics; no sponsor-value evidence. |
 | Same captured quote and recorded zero/empty response under the new owner policy | A and B both **ALLOW**. Replay reaches the sentinel once with exact transfer terms; no incremental risk-based decision or new live interaction. |
 | Fresh 22:27 UTC quote plus fresh authenticated zero/empty response under the owner policy | A and B both **ALLOW**. One sentinel call, zero signatures; real API input governs the path, but no negative decision change or payment is demonstrated. |
-| B: live risk justifies holding an A-allowed quote | Not run. **Negative demo unproven.** |
+| Captured controlled HTTPS quote: A local policy versus B same policy plus live risk | **A ALLOW → B HOLD**, because actual API traits include `known_scammer` and `blacklist`; **zero signatures**. See the 22:41 UTC evidence below. |
 
-No real malicious seller was identified. No controlled sponsor fixture was substituted into the captured quote. A future fixture scenario must be labeled controlled and use an actually captured locally permitted quote.
+No real malicious seller was identified. The local HTTPS fixture server emitted its own 402 with the historical risk subject as payTo, and the client captured that response over TLS before scanning. The earlier public quote was not edited or relabeled. This is a controlled negative demonstration, not a claim about attack frequency, customer need or the availability of paid content from that local server.
 
 ## Experiment 4 — Allowed payment
 
@@ -139,11 +151,11 @@ No real malicious seller was identified. No controlled sponsor fixture was subst
 
 ## Experiment 5 — Negative and bypass cases
 
-**BLOCKED for the complete risk-held/isolated-signer gate; PASS for 22 offline checks and one live uncertainty-hold run.** Follow-up `npm.cmd test`: **22 passed / 0 failed**, 2026-09-25 at approximately 21:23:53 UTC. Full timestamp and counts: [signer-counts.json](spike-7c/evidence/signer-counts.json). Unit tests replay the captured challenge; the new test also replays the observed live zero-score response. Neither replay is a fresh API interaction. The separate [live-gate.json](spike-7c/evidence/live-gate.json) records the actual network-backed guard run.
+**PASS for live risk-held zero signatures; HOLD for deployed funded-signer bypass proof.** Historical `npm.cmd test`: **22 passed / 0 failed**, 2026-09-25 at approximately 21:23:53 UTC. Full timestamp and counts: [signer-counts.json](spike-7c/evidence/signer-counts.json). That suite was not rerun. Its captured-response replays and synthetic decisions remain offline evidence. The latest [controlled risk trace](spike-7c/evidence/controlled-risk-hold.json) is a fresh API-backed HOLD with zero calls to an actual unfunded cryptographic account, without demonstrating deployment isolation.
 
-`boundaryCalls` counts calls to the validating wrapper; `rawSignerCalls` counts calls past the checks to a **throwing sentinel**. The sentinel has no private key and creates no signature. This distinction prevents confusing a rejected wrapper invocation with a payer authorization.
+`boundaryCalls` counts calls to the validating wrapper; `rawSignerCalls` counts calls past its checks. Earlier rows use a **throwing sentinel**, which has no private key and creates no signature. The final controlled-risk row uses an actual ephemeral cryptographic account; both invocation and completed-signature counters stayed zero. Wrapper calls are not payer authorizations.
 
-| Case | Boundary calls | Downstream sentinel calls | Actual signatures |
+| Case | Boundary calls | Downstream backend calls | Actual signatures |
 | --- | ---: | ---: | ---: |
 | Bare official auto-wrapper, unsafe control | 0 | 1 | 0 |
 | SDK before-creation abort | N/A | 0 | 0 |
@@ -160,9 +172,9 @@ No real malicious seller was identified. No controlled sponsor fixture was subst
 | Replay of observed zero-score API response, coverage unverified | 0 | 0 | 0 |
 | Fresh 402 plus actual live recipient scan, uncertainty hold | 0 | 0 | 0 |
 | Fresh 402 plus actual live recipient scan, owner-assumption allow at 22:27 UTC | 1 | 1 | 0 |
-| Real live-risk-held quote | Not run | Not measured | Not generated |
+| Real live-risk-held controlled HTTPS quote, actual unfunded cryptographic backend | 0 | 0 | 0 |
 
-Synthetic decisions only test the mechanism. The live unknown hold demonstrates real API input reaching the decision path, but still does not prove a known-risk response holding an otherwise allowed purchase. The positive sentinel test checks exact recipient/value/token/chain, not a valid cryptographic authorization. No alternate funded signer was present among inspected inputs; deployment isolation remains untested.
+The earlier synthetic and uncertainty-hold controls keep their original limits. The new controlled quote now demonstrates a live known-risk response holding an otherwise locally allowed purchase. Its zero backend calls are measured against an in-memory, unfunded cryptographic account rather than a throwing sentinel. The positive branch still has no valid payment authorization or settlement. No protected funded signer was supplied; deployment isolation and bypass testing remain outstanding.
 
 ## Eligibility, history and product gate
 
@@ -174,7 +186,7 @@ Product HOLD remains, consistent with the now-received [completed 07B report](07
 
 ## Resume findings — missing experiments only
 
-**Historical resume: 2026-09-25, beginning 21:39:02 UTC.** Re-read the freeze and master context from Downloads and reviewed the supplied 07C report. Searches in Downloads, Documents, Desktop, Music and named files in Codex attachments found the **07B prompt**, but not the completed `07B_POST_FREEZE_PROBLEM_VALIDATION.md`. This search did not establish that the document was absent elsewhere; the owner later supplied it, as recorded below. No replacement validation report was invented. The working repository remains `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`; its identity is observed, while the owner's explicit confirmation is pending.
+**Historical resume: 2026-09-25, beginning 21:39:02 UTC.** Re-read the freeze and master context from Downloads and reviewed the supplied 07C report. Searches in Downloads, Documents, Desktop, Music and named files in Codex attachments found the **07B prompt**, but not the completed `07B_POST_FREEZE_PROBLEM_VALIDATION.md`. This search did not establish that the document was absent elsewhere; the owner later supplied it, as recorded below. No replacement validation report was invented. The working repository was `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`; the owner explicitly confirmed it in the latest resume request.
 
 ### Sponsor information retrieval
 
@@ -193,7 +205,7 @@ Executed only `node --env-file=.env sponsor-subject-probe.mjs`. No offline suite
 
 The adapter discarded unvalidated error bodies. HTTP 404 alone does not establish its cause: no conclusion about coverage, address cleanliness or maliciousness follows. These calls produced no nonempty traits and did not resolve the negative case. **No quote was captured for either address**, no signer was instantiated by this script and no payment was attempted. Its zero authorization count is not a new guarded-signer proof. At this historical resume there had been five authenticated address-scan attempts, with three HTTP 200 responses and two HTTP 404 responses. The later 22:27 UTC call brings the current total to six: four HTTP 200 and two HTTP 404.
 
-### Remaining experiment decisions
+### Historical experiment decisions at 21:42 UTC
 
 | Missing requirement | Status after this resume | Evidence / dependency |
 | --- | --- | --- |
@@ -201,7 +213,7 @@ The adapter discarded unvalidated error bodies. HTTP 404 alone does not establis
 | Controlled captured quote held because of live risk | **HOLD** | No live flagged response or eligible fixture available; no fabricated quote or risk label substituted. |
 | Allowed testnet payment with settlement and usable output | **HOLD** | Protected signer, funded public address, owner cap and justified allow policy not supplied. No signing or payment attempted. |
 | Zero authorizations for live held and deployed bypass paths | **HOLD** | Existing SDK/sentinel results preserved; no deployed funded signer available for the remaining proof. |
-| Completed 07B and intended-repository confirmation | **HOLD at 21:42 UTC** | Neither had arrived at that review. The report was subsequently received; repository confirmation remains open. See the input review below. |
+| Completed 07B and intended-repository confirmation | **HOLD at 21:42 UTC** | Neither had arrived at that review. Both were subsequently supplied; these input dependencies are resolved. |
 
 The completed local checks remain evidence of their original, limited pass; this table does not reset them. Missing inputs prevented the remaining experiments from being completed. No architecture, UI or broader product build was started.
 
@@ -209,11 +221,11 @@ The completed local checks remain evidence of their original, limited pass; this
 
 > We are testing an ETHGlobal Tokyo buyer guard with `GET /api/public/v2/extension/account/{address}/quick-scan`. For the actual selected payTo `0x209693Bc6afc0C5328bA36FaF03C514EF312287C`, HTTP 200 returned exactly `{"toxicScore":0,"traits":[]}`. Does that mean adequate mainnet coverage with no detected risks, or can an unseen/unindexed/unsupported address return the same result? What response identifies insufficient coverage? Please share the event's pinned known-risk address and expected current response/trait. Two addresses in your published MEV scam analysis returned HTTP 404; what does 404 mean for this endpoint? We will use a controlled negative quote and will not pay the risky subject.
 
-This historical question remains available for the authenticated event channel or [sponsor contact route](https://intercepta.io/ethglobal). No message was sent on the owner's behalf. Following the owner's later policy instruction, coverage clarification is optional for the demo; the missing known-risk fixture/live verdict remains required for the negative case.
+This historical question remains available for the authenticated event channel or [sponsor contact route](https://intercepta.io/ethglobal). No message was sent on the owner's behalf. Coverage clarification is optional for the owner's demo policy. The latest resume independently obtained a documented historical fixture and a live risk verdict, resolving the negative-case dependency without private Discord access.
 
 ### Review of the updated decision
 
-**TECHNICAL HOLD remains warranted.** The live API works for the original recipient, but the required allowed settlement, known-risk decision change and funded-signer isolation are still unproven. The two 404 responses are not evidence of technical success or grounds to reinterpret zero as safe. The subsequent completed 07B report confirms that operator evidence remains missing. The owner later selected a limited sponsor demo, conditional on technical passage, as recorded in 07D; that choice does not establish validated demand.
+**TECHNICAL HOLD remains warranted after the latest results.** The controlled live risk decision change is now proven, but allowed settlement and funded-signer isolation are still unproven. Earlier 404 responses remain inconclusive. The owner's zero/empty rule is a demo policy rather than an address-safety claim. The completed 07B report identifies missing operator evidence; the conditional sponsor-demo choice in 07D does not establish validated demand.
 
 ## Completed 07B received — input and decision reconciliation
 
@@ -226,7 +238,7 @@ The supplied report identifies its inputs as `07_PROJECT_FREEZE(5).md` and `00_H
 | Required validation document | **PASS for receipt and review only.** The completed report is now available. |
 | Problem validation | **HOLD.** 07B reports no direct operator evidence for a recurring, locally allowed risky payment that external screening would materially improve. |
 | Differentiation | **Unproven.** 07B rejects the current finalist-differentiation claim because of overlapping prior art; this spike establishes no superiority. |
-| Live technical feasibility | **TECHNICAL HOLD.** 07C already adds a real captured quote, authenticated responses and a limited uncertainty hold to the desk report. It still lacks a justified live risk hold, allowed settlement and deployed signer isolation. |
+| Live technical feasibility | **TECHNICAL HOLD.** Subsequent 07C work now includes a controlled live risk HOLD as well as real quotes and authenticated allow/uncertainty responses. Allowed settlement and deployed signer isolation remain missing. |
 | Product progression | **Full Step 8 is not approved.** Technical success alone would support a narrowly described sponsor demo with customer need still unproven. |
 
 07B's section 6 example is explicitly a **format fixture**, not a captured transaction or risk verdict. It supplies no new negative case or payment evidence. The real HTTP captures and live API observations in this report retain their original provenance and limits.
@@ -250,7 +262,7 @@ Checked the [API overview](https://docs.web3antivirus.io/reference/api-overview)
 
 ### Owner-selected zero-score policy — 2026-09-25
 
-The owner explicitly chose to treat zero as safe and empty traits as no suspicious activities reported. [scan.mjs](spike-7c/scan.mjs) now returns `allow` only for numeric `toxicScore: 0` together with `traits: []`, with the display message “No suspicious activities reported.” and a recorded owner-assumption policy basis. Nonzero scores, conflicting nonempty traits, malformed/missing evidence and request failures continue to hold for review. This instruction chooses a risk rule; it does not supply a payer or an exact spending cap.
+The owner selected numeric `toxicScore: 0` together with `traits: []` as the demo ALLOW rule. [scan.mjs](spike-7c/scan.mjs) preserves that exact rule, with “No suspicious activities reported.” and a recorded owner-assumption basis; this is not proof of address safety. Known scammer/blacklist traits now map to a named-risk HOLD; other non-allow responses hold for review. This instruction chooses a risk rule; it does not supply a payer or an exact spending cap.
 
 Executed only `node --test owner-policy.test.mjs`: **2 passed / 0 failed**, evidence timestamp **22:22:53.023 UTC**. [Targeted evidence](spike-7c/evidence/owner-policy-checks.json) records one replay of the actual zero/empty response reaching the validating wrapper and throwing sentinel once, with matching recipient, amount, asset and chain, and zero signatures. Six synthetic non-allow inputs each produced zero wrapper/backend calls. These controls are not live known-risk evidence. The original 22-check suite was not rerun and its historical evidence remains unchanged; its superseded zero-score test was replaced by these separate current-policy tests.
 
@@ -266,23 +278,51 @@ Smallest remaining spike and acceptance criteria:
 
 | Remaining step | Required input / pass condition |
 | --- | --- |
-| Controlled live risk-held case | Obtain a known-risk fixture and interpretable live response; capture a real controlled 402 naming that subject. The same local policy must allow the identical quote, while live risk holds it with zero authorization signatures. A synthetic trait or local rejection does not pass. |
+| Controlled live risk-held case | **Completed at 22:41 UTC** using a sponsor-documented historical subject, real local HTTPS 402, same-quote local ALLOW/live-risk HOLD, and zero signatures. Evidence and limits below. |
 | Allowed testnet purchase | Use a protected funded signer and exact owner-approved endpoint/recipient/token/network/per-call/task budget. Pass only with matching authorization, actual settlement evidence and usable paid output. The current sentinel cannot satisfy this. |
 | Deployed signer enforcement | With that actual signing boundary, held, changed-quote and alternate-wrapper/tool attempts must produce zero signatures; the purchasing agent must lack another signing route. Prior in-process controls remain historical evidence only. |
 | Build go/no-go | **Written scope choice received:** conditional GO for a limited sponsor demo after 07C technical checks pass, with customer need unproven. Recorded in 07D; no repeated scope approval is needed if those conditions are met. |
 
 Provider confirmation of zero/empty semantics is not reintroduced as a prerequisite. The owner's existing demo assumption remains in force. No external message, funded-key setup, event submission or payment was performed.
 
-### Remaining dependencies
+### Latest remaining-gates execution — 2026-09-25, 22:36–22:42 UTC
 
-1. A known-risk fixture yielding a decision-changing live response. **The credential works, and sponsor clarification of zero/empty semantics is no longer required for the owner's chosen demo assumption.**
-2. Protected testnet signer outside agent access, funded balance and owner-selected exact spend policy.
-3. A locally permitted captured negative quote and a settled positive purchase with usable output.
-4. Intended repository confirmation and event-track eligibility evidence. **The completed 07B input is now received; its product HOLD remains.**
-5. For a validated-product claim: the operator evidence identified by completed 07B. This is separate from the technical spike and cannot be satisfied by a successful sponsor fixture alone.
+The owner confirmed this repository and explicitly restricted work to the remaining 07C gates. The `.env` configuration-name check found only `INTERCEPTA_API_KEY`; no private-key value was printed. No protected signing service or funded public payer address was supplied. The owner asked whether the missing input meant a Sepolia wallet address; we explained that the selected chain is Base Sepolia, and that a public address alone cannot sign or enforce policy. Wallet setup and exact spend cap are still pending. The previous conditional sponsor-demo decision is retained without requesting it again.
 
-These are missing prerequisites, not successful gates. No inspected SDK ordering defect forces a stop: the supported pre-sign control exists. If live semantics cannot govern it, a funded deployment is bypassable, or the only negative remains synthetic/local-policy rejection after access is supplied, stop the Intercepta prize build. Do not expand into architecture or UI to compensate.
+**Fixture provenance:** [Intercepta's July 2026 investigation](https://intercepta.io/blog/how-stolen-crypto-moves-two-stage-pipeline) identifies `0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570` in a historical poisoning theft and token blacklist. The inspected HTML SHA-256 was `00A969DB10983C44BE52B884142D410EE6CCCEECFC6DEC649BA61D94EC08214F`. This source is historical provenance, not an event fixture certification or a current legal-status finding.
 
-**TECHNICAL HOLD**
+The first discovery request received HTTP 200 but was rejected by the old adapter's required `txsCount` check. A second bounded diagnostic request retained only selected risk fields and revealed the omission. A narrow adapter change accepts missing `txsCount` while rejecting a present invalid count; numeric score/risk and string name/description remain required. The actual trait names `known_scammer` and `blacklist` justify our demo HOLD mapping. The original zero/empty ALLOW policy is unchanged. Two new tests for the changed response handling passed; the completed offline suites were not rerun.
 
-**One next action:** obtain the known-risk fixture and expected current response so a captured, locally permitted quote can be held on actual live risk evidence. The owner-selected zero/empty rule is implemented; a funded signer and exact spend cap are still needed for the payment test.
+**Real captured negative quote:** [controlled-risk-probe.mjs](spike-7c/controlled-risk-probe.mjs) starts an HTTPS server on loopback and issues an x402 v2 `exact` quote naming the documented fixture as `payTo`, Base Sepolia, the selected USDC asset, amount `10000`, and timeout 300 seconds. The client makes an actual HTTPS GET with a trusted local certificate and verification enabled; it captures HTTP 402, the original base64 header and body, then uses the official SDK encoder/parser. [The capture](spike-7c/evidence/controlled-risk-402.json) records the certificate fingerprint and body hash. This local controlled server cannot settle payments or deliver paid content; it is solely a negative fixture. No third-party quote was edited after capture.
+
+**Same-quote comparison and zero signatures:** the quote hash `be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb` is identical at capture, local-policy ALLOW and screening. The actual selected payTo is scanned live. At **22:41:54.475–22:41:55.320 UTC**, Intercepta returned HTTP 200 in **845 ms**, score **100**, and these observed traits:
+
+| Trait | Reported risk |
+| --- | ---: |
+| `known_scammer` | 100 |
+| `blacklist` | 100 |
+| `attack_money_target` | 85 |
+| `fake_phishing_transfer` | 45 |
+
+The resulting decision was **HOLD / `KNOWN_RISK_TRAITS_REPORTED`** and the guard stopped with `RISK_HELD`. [The live trace](spike-7c/evidence/controlled-risk-hold.json) records **0 validating-wrapper calls, 0 cryptographic backend invocations, 0 completed signatures**, released reservation `0`, one unpaid HTTPS request, no paid retry and no settlement. The backend was a freshly generated, unfunded `viem` account held only in process memory, with no payer key persisted. It was not a sentinel, but it was also not a protected signer deployment. Thus gate 1 passes within the controlled-test scope; gate 3 remains unproven.
+
+Commands/results for this resume:
+
+- `node --env-file=.env documented-fixture-probe.mjs`: completed; HTTP 200 rejected by the then-current schema check. Preserved discovery evidence.
+- One read-only field-diagnostic request: actual score/traits captured in [documented-fixture-schema.json](spike-7c/evidence/documented-fixture-schema.json).
+- `node --test known-risk-response.test.mjs`: **2 passed, 0 failed**; changed-parser controls only, not payment or isolation evidence.
+- `node --env-file=.env controlled-risk-probe.mjs`: **exit 0**, live risk-HOLD gate passed with the counts above.
+
+Total authenticated address scans now recorded across 07C: **9** (**7 HTTP 200**, including the schema-rejected discovery response, and **2 HTTP 404**). This resume did not repeat the completed positive live probe or original offline suite. No funds were spent, no authorization signatures generated, and no full build begun.
+
+### Remaining dependencies and final disposition
+
+1. A protected signer connection and its public Base Sepolia payer address, funded with the required test asset; an exact owner-approved total/per-call spend policy. A public address alone is insufficient. The signing key and enforced policy must be outside the purchasing agent's access.
+2. One real allowed payment through that boundary, with on-chain/facilitator settlement evidence and usable paid output; no sentinel or offline result can satisfy it.
+3. Held, changed-quote and bypass attempts against the deployed protected signer, with zero signatures and no alternate funded signing route available to the agent.
+
+The repository, completed 07B input, conditional demo scope, and controlled risk-HOLD dependencies are resolved. Event eligibility remains a separate submission matter. Customer need remains unproven under the chosen sponsor-demo scope. Missing funded-signing access prevents the last two technical gates from being executed; it is not evidence of a failed payment or a successful isolation test.
+
+**HOLD.** The live negative gate now passes; settlement and protected-signer enforcement are still unproven. No full product build is authorized by this result.
+
+**One next action:** identify the owner's wallet/signing setup, then provision or connect the protected Base Sepolia signer with the public payer address and exact test-USDC spend cap. Preserve the completed live risk-HOLD evidence rather than rerunning it to substitute for the missing payment.

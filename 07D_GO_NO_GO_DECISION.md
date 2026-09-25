@@ -17,11 +17,11 @@ This is the owner's written decision in the conversation, recorded here without 
 
 ## Condition before the full build
 
-The [07C report](07C_HOLD_SPIKE_REPORT.md) currently remains **TECHNICAL HOLD**. Its latest live run reaches a non-signing sentinel after a real quote and live scan; it does not settle a payment or prove deployed signer isolation.
+The [07C report](07C_HOLD_SPIKE_REPORT.md) currently remains **HOLD**. Its latest resume now proves a live risk-based HOLD on a real captured controlled quote with zero signatures. Allowed payment settlement and deployed signer isolation remain unproven. This progress note does not change the owner's conditional decision.
 
 Before activating the [post-gate build prompt](POST_GATE_BUILD_PACKET_AND_IMPLEMENTATION_PROMPT.md), complete the remaining technical proof:
 
-1. A real captured, locally permitted controlled quote is held because of interpretable live risk evidence, producing zero authorization signatures.
+1. **Completed in the latest 07C resume:** a real captured, locally permitted controlled quote is held because of interpretable live risk evidence, producing zero authorization signatures. The unfunded in-process negative signer does not satisfy the separate isolation requirement.
 2. An allowed testnet purchase uses a protected funded signer and an exact owner-approved spend policy, settles, and delivers usable paid output.
 3. Held, changed-quote and bypass attempts produce zero signatures at that deployed signing boundary; the purchasing agent has no alternate funded signing route.
 

@@ -1,0 +1,72 @@
+{
+  "startedAt": "2026-09-25T22:38:20.536Z",
+  "completedAt": "2026-09-25T22:38:21.467Z",
+  "subject": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+  "status": 200,
+  "latencyMs": 922,
+  "diagnostic": {
+    "responseFields": [
+      "toxicScore",
+      "traits"
+    ],
+    "toxicScore": 100,
+    "traitsType": "array",
+    "traitsCount": 4,
+    "traits": [
+      {
+        "fields": [
+          "risk",
+          "name",
+          "description"
+        ],
+        "risk": 100,
+        "name": "known_scammer",
+        "txsCount": {
+          "type": "undefined"
+        },
+        "description": "The address has a confirmed history of malicious activity, including scams, phishing, or other harmful behavior."
+      },
+      {
+        "fields": [
+          "risk",
+          "name",
+          "description"
+        ],
+        "risk": 100,
+        "name": "blacklist",
+        "txsCount": {
+          "type": "undefined"
+        },
+        "description": "The address appears on external or internal blacklist sources due to prior involvement in high‑risk or malicious activity."
+      },
+      {
+        "fields": [
+          "risk",
+          "name",
+          "description"
+        ],
+        "risk": 85,
+        "name": "attack_money_target",
+        "txsCount": {
+          "type": "undefined"
+        },
+        "description": "The address has received funds tied to exploits, wallet drainers, or other forms of attack‑related activity."
+      },
+      {
+        "fields": [
+          "risk",
+          "name",
+          "description"
+        ],
+        "risk": 45,
+        "name": "fake_phishing_transfer",
+        "txsCount": {
+          "type": "undefined"
+        },
+        "description": "The address appears in transaction histories involving transfers linked to scam activity or phishing‑related operations."
+      }
+    ]
+  },
+  "evidenceClass": "LIVE_RESPONSE_SCHEMA_DIAGNOSTIC_ONLY_NO_SIGNER",
+  "payerAuthorizationSignatures": 0
+}

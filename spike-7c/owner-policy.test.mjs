@@ -49,19 +49,19 @@ test('owner assumption allows the recorded zero/empty response to reach the exac
 });
 
 test('owner assumption does not allow nonzero, conflicting or incomplete responses', async () => {
-  for (const [label, observed] of [
+  for (const [label, observed, expectedDecision = 'unknown'] of [
     ['nonzero', { toxicScore: 1, traits: [] }],
-    ['conflicting trait', { toxicScore: 0, traits: [{ name: 'known_scammer', risk: 1, txsCount: 1, description: 'Synthetic control' }] }],
+    ['conflicting trait', { toxicScore: 0, traits: [{ name: 'known_scammer', risk: 1, txsCount: 1, description: 'Synthetic control' }] }, 'hold'],
     ['missing traits', { toxicScore: 0 }],
     ['missing score', { traits: [] }],
     ['string score', { toxicScore: '0', traits: [] }],
     ['missing response', null],
   ]) {
     const b = setup(observed);
-    await assert.rejects(b.tool.purchase(endpoint, required), /RISK_UNKNOWN/);
+    await assert.rejects(b.tool.purchase(endpoint, required), expectedDecision === 'hold' ? /RISK_HELD/ : /RISK_UNKNOWN/);
     assert.equal(b.calls(), 0);
     assert.equal(b.inspect().boundaryCalls, 0);
-    rows.push({ case: label, result: 'PASS', decision: 'unknown', ...b.inspect(), payerAuthorizationSignatures: 0 });
+    rows.push({ case: label, result: 'PASS', decision: expectedDecision, ...b.inspect(), payerAuthorizationSignatures: 0 });
   }
 });
 

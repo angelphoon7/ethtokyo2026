@@ -1,0 +1,51 @@
+{
+  "startedAt": "2026-09-25T22:41:54.299Z",
+  "completedAt": "2026-09-25T22:41:54.385Z",
+  "latencyMs": 81,
+  "request": {
+    "url": "https://127.0.0.1:58720/controlled-known-risk",
+    "method": "GET"
+  },
+  "status": 402,
+  "tlsAuthorized": true,
+  "headers": {
+    "date": "Fri, 25 Sep 2026 22:41:54 GMT",
+    "content-type": "application/json",
+    "payment-required": "eyJ4NDAyVmVyc2lvbiI6MiwiZXJyb3IiOiJQYXltZW50IHJlcXVpcmVkIiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly8xMjcuMC4wLjE6NTg3MjAvY29udHJvbGxlZC1rbm93bi1yaXNrIiwiZGVzY3JpcHRpb24iOiJDb250cm9sbGVkIGtub3duLXJpc2sgbmVnYXRpdmUgZml4dHVyZTsgbm8gcGFpZCBkZWxpdmVyeSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MzIiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHgwMzZDYkQ1Mzg0MmM1NDI2NjM0ZTc5Mjk1NDFlQzIzMThmM2RDRjdlIiwicGF5VG8iOiIweGE3QmY0ODc0OUQyRTRhQTI5ZTMyMDk4Nzk5NTZiOWJBYTlFOTA1NzAiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNEQyIsInZlcnNpb24iOiIyIn19XX0="
+  },
+  "body": "{}",
+  "certificateFingerprint256": "45:94:9F:A1:4C:EA:8D:3A:4A:26:7B:1B:53:F1:BA:4A:9E:4B:06:AB:27:40:38:EF:5F:07:5E:53:88:33:99:81",
+  "bodySha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "decodedPaymentRequired": {
+    "x402Version": 2,
+    "error": "Payment required",
+    "resource": {
+      "url": "https://127.0.0.1:58720/controlled-known-risk",
+      "description": "Controlled known-risk negative fixture; no paid delivery",
+      "mimeType": "application/json"
+    },
+    "accepts": [
+      {
+        "scheme": "exact",
+        "network": "eip155:84532",
+        "amount": "10000",
+        "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+        "payTo": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+        "maxTimeoutSeconds": 300,
+        "extra": {
+          "name": "USDC",
+          "version": "2"
+        }
+      }
+    ]
+  },
+  "selectedQuoteSha256": "be5d1551e13f61183fd1525533e209ddf69f166d67c3a5535787541010bdc7fb",
+  "fixture": {
+    "address": "0xa7Bf48749D2E4aA29e3209879956b9bAa9E90570",
+    "source": "https://intercepta.io/blog/how-stolen-crypto-moves-two-stage-pipeline",
+    "sourceClass": "SPONSOR_PUBLISHED_HISTORICAL_RISK_SUBJECT_NOT_DISCORD_FIXTURE",
+    "usage": "CONTROLLED_NEGATIVE_QUOTE_ONLY_NO_PAYMENT_TO_THIS_SUBJECT"
+  },
+  "evidenceClass": "REAL_HTTPS_CAPTURE_FROM_CONTROLLED_LOCAL_NEGATIVE_SELLER",
+  "paidRetrySent": false
+}

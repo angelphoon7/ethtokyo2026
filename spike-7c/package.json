@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "capture": "node capture.mjs",
-    "test": "node --test guard.test.mjs owner-policy.test.mjs"
+    "test": "node --test guard.test.mjs owner-policy.test.mjs known-risk-response.test.mjs"
   },
   "dependencies": {
     "@x402/core": "2.27.0",

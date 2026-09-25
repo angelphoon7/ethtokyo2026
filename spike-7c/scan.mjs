@@ -3,16 +3,28 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 
 export const ZERO_SCORE_POLICY = 'OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW';
+export const KNOWN_RISK_POLICY = 'DEMO_HOLD_ON_KNOWN_SCAMMER_OR_BLACKLIST_TRAIT';
+
+export function validScanResponse(body) {
+  return Number.isFinite(body?.toxicScore) && Array.isArray(body?.traits) &&
+    body.traits.every(t => t && typeof t.name === 'string' && Number.isFinite(t.risk) &&
+      typeof t.description === 'string' && (!Object.hasOwn(t, 'txsCount') || Number.isFinite(t.txsCount)));
+}
 
 export function interpretObservedScan(observed) {
-  // Owner instruction on 2026-09-25: treat zero with no traits as safe for the
-  // demo gate. This is a policy assumption, not provider-confirmed coverage.
-  if (observed?.toxicScore === 0 && Array.isArray(observed.traits) && observed.traits.length === 0) {
+  const unknown = { decision: 'unknown', reason: 'LIVE_SCHEMA_RECEIVED_MAPPING_REQUIRES_REVIEW' };
+  if (!validScanResponse(observed)) return unknown;
+  // The live historical fixture returned these documented trait names. The demo
+  // holds on their presence; it does not invent a numeric score threshold.
+  const matchedTraits = observed.traits.filter(t => ['known_scammer', 'blacklist'].includes(t.name)).map(t => t.name);
+  if (matchedTraits.length) return { decision: 'hold', reason: 'KNOWN_RISK_TRAITS_REPORTED',
+    message: `Held: ${matchedTraits.join(', ')}.`, policyBasis: KNOWN_RISK_POLICY, matchedTraits };
+  // Owner-selected demo rule, not proof that the address is safe or covered.
+  if (observed.toxicScore === 0 && observed.traits.length === 0) {
     return { decision: 'allow', reason: 'NO_SUSPICIOUS_ACTIVITIES_REPORTED',
       message: 'No suspicious activities reported.', policyBasis: ZERO_SCORE_POLICY };
   }
-  // Nonzero scores, contradictory traits and incomplete data still need review.
-  return { decision: 'unknown', reason: 'LIVE_SCHEMA_RECEIVED_MAPPING_REQUIRES_REVIEW' };
+  return unknown;
 }
 
 export async function quickScan(subject) {
@@ -28,16 +40,20 @@ export async function quickScan(subject) {
     });
     let body;
     try { body = await response.json(); } catch { /* Unknown holds. */ }
-    const valid = response.ok && Number.isFinite(body?.toxicScore) && Array.isArray(body?.traits) &&
-      body.traits.every(t => typeof t.name === 'string' && Number.isFinite(t.risk) &&
-        Number.isFinite(t.txsCount) && typeof t.description === 'string');
+    // Actual nonempty HTTP 200 responses omit the documented txsCount field.
+    // Accept that omission only; a present invalid count or missing risk field holds.
+    const valid = response.ok && validScanResponse(body);
     // Whitelist schema fields; never persist headers, keys, or generic error bodies.
     const observed = valid ? { toxicScore: body.toxicScore, traits: body.traits.map(t => ({
-      name: t.name.replaceAll(key, '[REDACTED]'), risk: t.risk, txsCount: t.txsCount, description: t.description.replaceAll(key, '[REDACTED]'),
+      name: t.name.replaceAll(key, '[REDACTED]'), risk: t.risk,
+      ...(Object.hasOwn(t, 'txsCount') ? { txsCount: t.txsCount } : {}),
+      description: t.description.replaceAll(key, '[REDACTED]'),
     })) } : null;
     const responseFields = valid ? Object.keys(body).map(name => name.replaceAll(key, '[REDACTED]')).sort() : [];
     return { subject, startedAt, completedAt: new Date().toISOString(), latencyMs: Math.round(performance.now() - start),
       status: response.status, liveRequestMade: true, responseFields, observed,
+      ...(valid && body.traits.some(t => !Object.hasOwn(t, 'txsCount'))
+        ? { schemaNotes: ['LIVE_TRAITS_OMIT_DOCUMENTED_TXS_COUNT'] } : {}),
       ...(valid ? interpretObservedScan(observed) : { decision: 'unknown', reason: 'HTTP_OR_SCHEMA_UNKNOWN' }) };
   } catch (error) {
     return { subject, startedAt, latencyMs: Math.round(performance.now() - start), liveRequestMade: true,

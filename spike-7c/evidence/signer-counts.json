@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-09-25T21:11:28.552Z",
+  "recordedAt": "2026-09-25T21:23:52.804Z",
   "warning": "OFFLINE REPLAY ONLY. No key, crypto signing, paid retry, or settlement.",
   "rows": [
     {
@@ -158,6 +158,14 @@
       "reserved": "0",
       "payerAuthorizationSignatures": 0,
       "evidenceClass": "OFFLINE_REPLAY_WITH_TEST_CONTROL_AND_THROWING_SENTINEL"
+    },
+    {
+      "case": "recorded live zero-score / coverage unknown",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0,
+      "evidenceClass": "REPLAY_OF_OBSERVED_LIVE_RESPONSE_WITH_THROWING_SENTINEL"
     }
   ],
   "comparison": [
@@ -176,8 +184,8 @@
         }
       },
       "localOnly": "ALLOW_UNDER_TEST_POLICY_ONLY",
-      "plusLiveRisk": "BLOCKED_LIVE_KEY_REQUIRED",
-      "liveNegativeComparison": "UNPROVEN"
+      "missingKeyControl": "BLOCKED_LIVE_KEY_REQUIRED",
+      "liveNegativeComparison": "SEE_LIVE_GATE_EVIDENCE"
     }
   ]
 }

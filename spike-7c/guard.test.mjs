@@ -5,7 +5,7 @@ import { x402Client, x402HTTPClient } from '@x402/core/client';
 import { ExactEvmScheme } from '@x402/evm/exact/client';
 import { wrapFetchWithPayment } from '@x402/fetch';
 import { createBoundary, checkLocal } from './guard.mjs';
-import { quickScan } from './scan.mjs';
+import { quickScan, interpretObservedScan } from './scan.mjs';
 
 const capture = JSON.parse(await readFile(new URL('./evidence/http-3.json', import.meta.url), 'utf8'));
 const required = new x402HTTPClient(new x402Client()).getPaymentRequiredResponse(
@@ -53,7 +53,7 @@ test('captured response is a real supported quote; local comparison is a TEST po
   assert.deepEqual(required, capture.decodedPaymentRequired);
   assert.equal(checkLocal(endpoint, required, quote, policy), true);
   results.push({ endpoint, selected: quote, localOnly: 'ALLOW_UNDER_TEST_POLICY_ONLY',
-    plusLiveRisk: 'BLOCKED_LIVE_KEY_REQUIRED', liveNegativeComparison: 'UNPROVEN' });
+    missingKeyControl: 'BLOCKED_LIVE_KEY_REQUIRED', liveNegativeComparison: 'SEE_LIVE_GATE_EVIDENCE' });
 });
 
 test('official auto-payment wrapper reaches a naked sentinel without risk checks', async () => {
@@ -190,6 +190,20 @@ test('unconfigured Intercepta adapter holds without fabricating a response', asy
   } finally {
     if (saved !== undefined) process.env.INTERCEPTA_API_KEY = saved;
   }
+});
+
+test('recorded live zero-score response stays unknown pending coverage semantics', async () => {
+  const live = JSON.parse(await readFile(new URL('./evidence/intercepta.json', import.meta.url), 'utf8'));
+  assert.equal(live.status, 200);
+  assert.equal(live.liveRequestMade, true);
+  assert.deepEqual(live.observed, { toxicScore: 0, traits: [] });
+  const mapped = interpretObservedScan(live.observed);
+  assert.equal(mapped.reason, 'NO_REPORTED_TRAITS_COVERAGE_UNVERIFIED');
+  const b = setup({ scan: async subject => ({ subject, ...mapped }) });
+  await assert.rejects(b.tool.purchase(endpoint, required), /RISK_UNKNOWN/);
+  assert.equal(b.raw.calls, 0);
+  rows.push({ case: 'recorded live zero-score / coverage unknown', ...b.inspect(),
+    payerAuthorizationSignatures: 0, evidenceClass: 'REPLAY_OF_OBSERVED_LIVE_RESPONSE_WITH_THROWING_SENTINEL' });
 });
 
 after(async () => {

@@ -1,0 +1,15 @@
+{
+  "subject": "0x0d775e010f0b6c32c9468d43ba599ef47d596e47",
+  "startedAt": "2026-09-25T21:22:03.946Z",
+  "completedAt": "2026-09-25T21:22:11.550Z",
+  "latencyMs": 7603,
+  "status": 200,
+  "liveRequestMade": true,
+  "observed": {
+    "toxicScore": 0,
+    "traits": []
+  },
+  "decision": "unknown",
+  "reason": "LIVE_SCHEMA_RECEIVED_MAPPING_REQUIRES_REVIEW",
+  "subjectSource": "https://docs.web3antivirus.io/reference/quick-scan-address"
+}

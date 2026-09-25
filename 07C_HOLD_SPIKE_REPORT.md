@@ -1,16 +1,17 @@
 # 07C — Hold resolution: live payment and pre-sign gate spike
 
-**Decision: TECHNICAL HOLD. BLOCKED: LIVE KEY REQUIRED.**
+**Decision: TECHNICAL HOLD. Live API key verified; risk semantics/fixture and funded payment gates remain open.**
 
-A genuine supported HTTP 402 was captured, and 21 offline checks passed against the pinned official buyer packages. No authenticated Intercepta response, real payer authorization, paid retry, settlement, or delivered paid result was obtained. The negative sponsor-value demonstration and a deployed non-bypassable signer remain unproven. This does not clear the product HOLD or authorize Step 8.
+A fresh supported HTTP 402 and authenticated Intercepta response were obtained in the same guarded run. The API returned `toxicScore: 0` and `traits: []`; the buyer conservatively held pending coverage semantics, with zero downstream signer calls. **22 offline checks passed.** No payer authorization, paid retry, settlement, or delivered paid result was obtained. The negative risk-based sponsor-value demonstration and a deployed non-bypassable signer remain unproven. This does not clear the product HOLD or authorize Step 8.
 
 ## Scope, dates and inputs
 
 - Work date: **25 September 2026**. First recorded clock: **21:05:23 UTC / 22:05:23 Europe/London**; final findings review: **21:13:29 UTC / 22:13:29 Europe/London**. Evidence timestamps use UTC. This first go/no-go pass finished within the requested two-hour timebox; access dependencies stopped the live experiments early.
+- Credential follow-up: **21:20:55–21:23:53 UTC**, followed by report updates. The owner supplied the key in Git-ignored `spike-7c/.env`; Node loaded it with `--env-file=.env`. Three authenticated read-only API calls were made. No key value was printed or committed.
 - Repository inspected: `C:\Users\Jun Yee\Music\ethtokyo2026\ethtokyo2026`, origin `https://github.com/angelphoon7/ethtokyo2026.git`. It initially contained only `.git`, with no commits or project files. The enclosing workspace is not itself a Git repository. The intended-repository clarification had not been answered at report time.
 - Read the supplied Step 7C text, `07_PROJECT_FREEZE.md`, `00_HACKATHON_CONTEXT.md`, and `07B_POST_FREEZE_PROBLEM_VALIDATION_PROMPT.md`. The user's request to execute **7C** defines this task. The 7B attachment is a prompt, **not the completed validation report**; its request to perform independent research was not treated as a separate user task.
 - **Missing controlling input:** `07B_POST_FREEZE_PROBLEM_VALIDATION.md`. Preserve the HOLD specified by 7C; do not invent that report's findings. The IDE's `test-tokyo26/09_TECHNICAL_SPIKE_REPORT.md` was absent from this workspace. No previous simulated spike was reused or credited.
-- No relevant Intercepta/payer environment variables or local project secret files were found. No authenticated sponsor/mailbox session, protected signer, owner-selected spend cap, or known-risk fixture was provided. Variable presence was checked without printing values. The owner was asked for locations/names rather than secrets.
+- At the first pass, no Intercepta/payer credentials were available. **The Intercepta credential blocker is now resolved.** Protected signer, owner-selected spend cap and sponsor-certified known-risk fixture remain unavailable. The owner was asked for the event Discord fixture address/source; no response was available at follow-up review time.
 
 ## Versions and official sources
 
@@ -23,6 +24,7 @@ All sources below were inspected on **2026-09-25**. Documentation claims are dis
 | [Buyer quickstart](https://docs.x402.org/getting-started/quickstart-for-buyers) | Source claim: the TypeScript fetch wrapper handles payment automatically. Actual ordering was independently inspected in installed 2.27.0. |
 | [Fetch 2.27.0 package](https://registry.npmjs.org/@x402/fetch/-/fetch-2.27.0.tgz), [core package](https://registry.npmjs.org/@x402/core/-/core-2.27.0.tgz), [EVM package](https://registry.npmjs.org/@x402/evm/-/evm-2.27.0.tgz) | Observed executable implementation used in the tests, not an assumption about mutable `main`. Bundle hashes are in [inspection-hashes.json](spike-7c/evidence/inspection-hashes.json). |
 | [Quick Scan reference](https://docs.web3antivirus.io/reference/quick-scan-address), [Markdown/OpenAPI representation](https://docs.web3antivirus.io/reference/quick-scan-address.md) | Observed documentation only: GET endpoint, header authentication and response schema. Markdown revision timestamp: `2026-05-12T09:23:11.000Z`. |
+| [Deep Scan reference](https://docs.web3antivirus.io/reference/scan-address), [Getting Started](https://docs.web3antivirus.io/reference/getting-started-1), [Risk Library](https://docs.web3antivirus.io/reference/scam-and-risk-library) | Follow-up documentation inspection did not resolve zero-score versus unknown-address/coverage semantics or provide a certified known-risk address. The Deep Scan API itself was not called. |
 | [Sandbox access](https://intercepta.io/ethglobal) | Source claim: request form issues an emailed sandbox key with 1,000 calls, potentially after a few hours. No request was submitted using an invented identity or unauthorized account. |
 | [Tokyo Intercepta prize](https://ethglobal.com/events/tokyo2026/prizes) | Source claim: testnet payments permitted; live screening must govern a decision; risk coverage is mainnet; risky examples are pinned in Discord; successful and held flows plus a public repo/API feedback are required. No fixture was accessible in this session. |
 | [Event rules](https://ethglobal.com/events/tokyo2026/info/details) | Source claim: Classic project-specific work must start during the event; continuity differs; meaningful history and AI disclosure matter. These rules do not establish this project's eligibility. |
@@ -51,11 +53,13 @@ The official parser accepted this response. Its second offer is Solana and is ex
 
 The advertised resource is `https://x402.vercel.app/protected`, different from the requested host, with description `Access to protected content` and empty `mimeType`. The **test policy explicitly permits that exact resource alias**; no blanket host equivalence is assumed. A live owner policy must approve it or reject the quote.
 
+**Follow-up fresh challenge:** [http-live.json](spike-7c/evidence/http-live.json), **21:23:37.163–21:23:38.401 UTC**, **1,236 ms**, HTTP 402 with the identical EVM terms shown above. This capture fed the authenticated guarded run directly, rather than replaying the earlier HTTP response.
+
 Other unpaid observations: the `www.x402.org` URL redirects to `x402.org` (301); the first strict-redirect probe rejected it in 340 ms. A second candidate, `https://x402-dotnet.azurewebsites.net/api/minimal/protected`, timed out after 20,002 ms. [http-1.json](spike-7c/evidence/http-1.json) and [http-2.json](spike-7c/evidence/http-2.json) preserve these initial failures. An exploratory public facilitator discovery path returned 404; it is not used.
 
 ## Experiment 1 — Pre-sign enforcement
 
-**BLOCKED as a full experiment; PASS for SDK ordering and the limited in-process gate.**
+**BLOCKED as a full experiment; PASS for SDK ordering, the limited in-process gate and a live unknown-response hold.**
 
 Observed 2.27.0 call path (paths relative to `spike-7c/node_modules`):
 
@@ -67,17 +71,36 @@ The experimental [guard.mjs](spike-7c/guard.mjs) clones and freezes selected ter
 
 An outside wrapper with even the protected signer object cannot find the approval context. A concurrent purchase is held. A reached backend consumes the reservation even if it throws, preventing an ambiguous retry. No settlement reconciliation is implemented. The SDK receives only the selected offer and no extensions. Token signatures bind transfer terms, **not** the HTTP resource body or merchant identity.
 
+Follow-up [live-probe.mjs](spike-7c/live-probe.mjs) exercised: fresh real 402 → local test policy allowed → actual selected payTo scanned → HTTP 200 interpreted as inconclusive → `RISK_UNKNOWN` → **0 validating-wrapper calls, 0 backend calls, 0 signatures**. [live-gate.json](spike-7c/evidence/live-gate.json) records the timestamped order. The callback was a non-signing sentinel, not a funded payer.
+
 **Security limit:** this is an in-process seam, not a deployed key boundary. The factory, policy, scanner and payload-builder test seam are trusted host inputs. The test exposes instrumentation to the harness; a buyer agent would receive only `tool.purchase`. No OS account/container, remote signing policy, restricted tool list, or funded signer has been configured. An agent with this development shell could rewrite code or inspect a key placed in its environment. Do not place a funded payer key here and claim isolation. The absence of a funded key now is not proof that a future funded deployment cannot be bypassed.
 
 ## Experiment 2 — Live risk semantics
 
-**BLOCKED: LIVE KEY REQUIRED.** [intercepta.json](spike-7c/evidence/intercepta.json) records `liveRequestMade: false`, decision `unknown`, and the actual selected payTo. **Live response fields observed: none. Live API latency: not measured.** No request without credentials was represented as a risk verdict.
+**PARTIAL PASS: authenticated integration and observed schema. BLOCKED: complete allow/risk-hold semantics and known-risk fixture.** The original missing-key observation remains in Git history. It is superseded by these authenticated observations:
 
-Observed **documentation**: `GET https://api.web3antivirus.io/api/public/v2/extension/account/{address}/quick-scan`, authenticated by `X-API-KEY`. The documented JSON requires numeric `toxicScore` and array `traits`; each trait requires numeric `risk`, string `name`, numeric `txsCount`, string `description`. Names include `known_scammer` and `sanction_address`. The retrieved schema does not specify numeric score bounds, a freshness/coverage field, or an unknown-address example. These are schema facts, not live observations or thresholds.
+| Subject and evidence | Start UTC, 2026-09-25 | HTTP | Latency | Observed response |
+| --- | --- | ---: | ---: | --- |
+| Actual payTo `0x209693Bc6afc0C5328bA36FaF03C514EF312287C`, [first scan](spike-7c/evidence/intercepta.json) | 21:21:05.303 | 200 | 1,179 ms | `toxicScore: 0`, `traits: []` |
+| API documentation example `0x0d775e010f0b6c32c9468d43ba599ef47d596e47`, [example scan](spike-7c/evidence/intercepta-doc-example.json) | 21:22:03.946 | 200 | 7,603 ms | `toxicScore: 0`, `traits: []` |
+| Actual payTo inside the fresh-quote guard, [live trace](spike-7c/evidence/live-gate.json) | 21:23:38.406 | 200 | 429 ms | `toxicScore: 0`, `traits: []` |
 
-[scan.mjs](spike-7c/scan.mjs) reads `INTERCEPTA_API_KEY` locally, sends it only to the fixed official host, rejects redirects and limits a request to ten seconds. It retains only selected response fields, not request credentials or arbitrary error bodies. HTTP errors, malformed/missing responses and unavailable credentials map to **unknown hold**. Even valid JSON currently maps to **unknown pending review**: no unobserved score-to-allow mapping has been invented. A documented live flagged response is needed to establish **risk hold**, distinct from availability hold.
+The third response's complete top-level field-name list was exactly `toxicScore`, `traits`; no explicit coverage, chain, freshness or known/unknown-address status was returned. These three timings are individual observations, not a latency benchmark. The documentation example is **not** certified as a known-risk fixture, and its empty response proves no negative case.
 
-The intended mainnet-address subject is the same actual EVM payTo printed above. No mainnet activity, identity, risk classification or coverage was verified for it. The address appearing on testnet does not establish mainnet risk. No sponsor-documented known-risk subject or controlled negative seller quote was obtained.
+Observed **documentation**: `GET https://api.web3antivirus.io/api/public/v2/extension/account/{address}/quick-scan`, authenticated by `X-API-KEY`. The documented JSON requires numeric `toxicScore` and array `traits`; each trait requires numeric `risk`, string `name`, numeric `txsCount`, string `description`. Names include `known_scammer` and `sanction_address`. **No nonempty trait object was observed live.** Numeric score bounds and unknown-address behavior were not defined in the inspected material; no threshold was invented.
+
+[scan.mjs](spike-7c/scan.mjs) reads `INTERCEPTA_API_KEY` locally, sends it only to the fixed official host, rejects redirects and limits a request to ten seconds. It retains selected response fields and field names, not request credentials or arbitrary error bodies. Current buyer mapping:
+
+| Input | Buyer action / reason |
+| --- | --- |
+| HTTP 200, score zero, empty traits | Unknown hold: `NO_REPORTED_TRAITS_COVERAGE_UNVERIFIED`. Observed live and exercised before any backend call. |
+| Missing key, timeout, HTTP/schema error | Unknown hold due to unavailable/invalid evidence. Missing-key test remains an explicitly offline control. |
+| Other valid score/trait combination | Unknown pending review of observed semantics; none observed in this run. |
+| Allow or hold specifically because of known risk | Not enabled/validated by the available evidence. |
+
+The zero-score hold is **our conservative interpretation**, not an Intercepta assertion that these addresses are unknown or dangerous. The response supports only “no traits reported.” Without a documented unknown/coverage distinction and a known-risk comparison, it was not promoted to “safe” or automatic allow. The first two evidence files preserve the initial pre-review `LIVE_SCHEMA_RECEIVED_MAPPING_REQUIRES_REVIEW` reason; the third records the refined reason used by the current adapter.
+
+The scan subject was the same actual EVM payTo, using the sponsor's mainnet-data address endpoint without a testnet selector. No specific mainnet activity, identity or coverage was verified for it. A testnet quote does not establish mainnet risk. No sponsor-certified known-risk subject or controlled negative seller quote was obtained.
 
 ## Experiment 3 — Same-quote comparison
 
@@ -87,6 +110,7 @@ The intended mainnet-address subject is the same actual EVM payTo printed above.
 | --- | --- |
 | A: local test policy alone | ALLOW under that test policy. |
 | B: same test policy plus actual adapter without key | UNKNOWN HOLD; zero backend calls. This establishes missing-evidence behavior only. |
+| B: fresh identical quote plus actual authenticated response | UNKNOWN HOLD because coverage semantics are unresolved; zero backend calls. This establishes live fail-closed behavior, not a known-risk decision change. |
 | Injected allow/hold controls | Exercise gate mechanics; no sponsor-value evidence. |
 | B: live risk justifies holding an A-allowed quote | Not run. **Negative demo unproven.** |
 
@@ -94,11 +118,11 @@ No real malicious seller was identified. No controlled sponsor fixture was subst
 
 ## Experiment 4 — Allowed payment
 
-**BLOCKED.** Real challenge: observed. Live scan before signing: unavailable. Protected funded payer and owner-selected budget: unavailable. Authorization: **none**. Paid retry: **none**. Settlement reference/transaction: **none**. Paid response and usable task result: **none**. Funds spent by this spike: **zero**. Neither the `{}` challenge body nor a sentinel invocation counts as delivered paid content.
+**BLOCKED.** Real challenge and live scan before the signing boundary: observed. Allow semantics, protected funded payer and owner-selected budget: unavailable. Authorization: **none**. Paid retry: **none**. Settlement reference/transaction: **none**. Paid response and usable task result: **none**. Funds spent by this spike: **zero**. Neither the `{}` challenge body nor a sentinel invocation counts as delivered paid content.
 
 ## Experiment 5 — Negative and bypass cases
 
-**BLOCKED for the complete live/isolated-signer gate; PASS for 21 offline checks.** Run: `npm.cmd test`, Node test runner, **21 passed / 0 failed**, evidence timestamp **2026-09-25T21:11:28.552Z**. Full counts: [signer-counts.json](spike-7c/evidence/signer-counts.json). Tests use the captured challenge in a replayed `Response`; that replay is not a new live seller interaction.
+**BLOCKED for the complete risk-held/isolated-signer gate; PASS for 22 offline checks and one live uncertainty-hold run.** Follow-up `npm.cmd test`: **22 passed / 0 failed**, 2026-09-25 at approximately 21:23:53 UTC. Full timestamp and counts: [signer-counts.json](spike-7c/evidence/signer-counts.json). Unit tests replay the captured challenge; the new test also replays the observed live zero-score response. Neither replay is a fresh API interaction. The separate [live-gate.json](spike-7c/evidence/live-gate.json) records the actual network-backed guard run.
 
 `boundaryCalls` counts calls to the validating wrapper; `rawSignerCalls` counts calls past the checks to a **throwing sentinel**. The sentinel has no private key and creates no signature. This distinction prevents confusing a rejected wrapper invocation with a payer authorization.
 
@@ -116,9 +140,11 @@ No real malicious seller was identified. No controlled sponsor fixture was subst
 | Local endpoint rejection | 0 | 0 | 0 |
 | Second attempt reusing a consumed approval | 2 | 1 total; 0 on second | 0 |
 | Caller mutates original quote during scan | 1 | 1, original screened terms only | 0 |
+| Replay of observed zero-score API response, coverage unverified | 0 | 0 | 0 |
+| Fresh 402 plus actual live recipient scan, uncertainty hold | 0 | 0 | 0 |
 | Real live-risk-held quote | Not run | Not measured | Not generated |
 
-Synthetic decisions only test the mechanism. They do not satisfy the requirement for a live risk response changing the payment decision. The positive sentinel test checks exact recipient/value/token/chain, not a valid cryptographic authorization. No alternate funded signer was present among inspected inputs; deployment isolation remains untested.
+Synthetic decisions only test the mechanism. The live unknown hold demonstrates real API input reaching the decision path, but still does not prove a known-risk response holding an otherwise allowed purchase. The positive sentinel test checks exact recipient/value/token/chain, not a valid cryptographic authorization. No alternate funded signer was present among inspected inputs; deployment isolation remains untested.
 
 ## Eligibility, history and product gate
 
@@ -130,7 +156,7 @@ Product HOLD remains. Missing operator evidence includes an actual unattended pa
 
 ## Blockers and disposition
 
-1. Live sponsor credential and an observed response-to-decision mapping, including a known-risk fixture.
+1. Sponsor-confirmed zero/unknown coverage semantics and a known-risk fixture yielding a decision-changing live response. **The credential itself now works.**
 2. Protected testnet signer outside agent access, funded balance and owner-selected exact spend policy.
 3. A locally permitted captured negative quote and a settled positive purchase with usable output.
 4. Completed controlling 07B report, intended repository confirmation and event-track eligibility evidence.
@@ -139,4 +165,4 @@ These are missing prerequisites, not successful gates. No inspected SDK ordering
 
 **TECHNICAL HOLD**
 
-**One next action:** make the owner's Intercepta sandbox key available as `INTERCEPTA_API_KEY` in the authorized local environment, then run `node scan.mjs` to obtain and review the first live response for the captured actual payTo before attempting any funded work.
+**One next action:** obtain the sponsor's documented known-risk fixture and clarification of zero-score/unknown-address semantics, then verify a real risk-based hold before attempting funded work.

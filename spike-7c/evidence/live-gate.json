@@ -1,0 +1,74 @@
+{
+  "startedAt": "2026-09-25T21:23:37.163Z",
+  "completedAt": "2026-09-25T21:23:38.835Z",
+  "endpoint": "https://x402.org/protected",
+  "selected": {
+    "scheme": "exact",
+    "network": "eip155:84532",
+    "amount": "10000",
+    "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "payTo": "0x209693Bc6afc0C5328bA36FaF03C514EF312287C",
+    "maxTimeoutSeconds": 300,
+    "extra": {
+      "name": "USDC",
+      "version": "2"
+    }
+  },
+  "localPolicyClass": "TEST_POLICY_ONLY_NO_OWNER_SPEND_AUTHORIZATION",
+  "localOnly": "ALLOW_UNDER_TEST_POLICY_ONLY",
+  "scan": {
+    "subject": "0x209693Bc6afc0C5328bA36FaF03C514EF312287C",
+    "startedAt": "2026-09-25T21:23:38.406Z",
+    "completedAt": "2026-09-25T21:23:38.835Z",
+    "latencyMs": 429,
+    "status": 200,
+    "liveRequestMade": true,
+    "responseFields": [
+      "toxicScore",
+      "traits"
+    ],
+    "observed": {
+      "toxicScore": 0,
+      "traits": []
+    },
+    "decision": "unknown",
+    "reason": "NO_REPORTED_TRAITS_COVERAGE_UNVERIFIED"
+  },
+  "outcome": "RISK_UNKNOWN",
+  "counts": {
+    "boundaryCalls": 0,
+    "rawSignerCalls": 0,
+    "reserved": "0",
+    "sentinelCalls": 0,
+    "payerAuthorizationSignatures": 0
+  },
+  "paidRetrySent": false,
+  "settlement": null,
+  "trace": [
+    {
+      "event": "real_402_captured",
+      "at": "2026-09-25T21:23:38.401Z"
+    },
+    {
+      "event": "local_test_policy_allowed",
+      "at": "2026-09-25T21:23:38.405Z"
+    },
+    {
+      "event": "live_scan_started",
+      "at": "2026-09-25T21:23:38.406Z",
+      "subject": "0x209693Bc6afc0C5328bA36FaF03C514EF312287C"
+    },
+    {
+      "event": "live_scan_completed",
+      "at": "2026-09-25T21:23:38.835Z",
+      "decision": "unknown",
+      "reason": "NO_REPORTED_TRAITS_COVERAGE_UNVERIFIED"
+    },
+    {
+      "event": "guard_completed",
+      "at": "2026-09-25T21:23:38.835Z",
+      "outcome": "RISK_UNKNOWN"
+    }
+  ],
+  "evidenceClass": "LIVE_CHALLENGE_AND_AUTHENTICATED_SCAN_WITH_NON_SIGNING_SENTINEL"
+}

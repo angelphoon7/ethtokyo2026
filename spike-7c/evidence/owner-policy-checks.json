@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-09-25T22:22:53.023Z",
+  "riskPolicy": "OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW",
+  "evidenceClass": "TARGETED_OFFLINE_REPLAY_AND_SYNTHETIC_CONTROLS_WITH_NON_SIGNING_SENTINEL",
+  "liveRequestMade": false,
+  "paidRetrySent": false,
+  "settlement": null,
+  "rows": [
+    {
+      "case": "recorded zero/empty response under owner policy",
+      "result": "PASS",
+      "decision": "allow",
+      "policyBasis": "OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW",
+      "boundaryCalls": 1,
+      "rawSignerCalls": 1,
+      "reserved": "10000",
+      "payerAuthorizationSignatures": 0
+    },
+    {
+      "case": "nonzero",
+      "result": "PASS",
+      "decision": "unknown",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0
+    },
+    {
+      "case": "conflicting trait",
+      "result": "PASS",
+      "decision": "unknown",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0
+    },
+    {
+      "case": "missing traits",
+      "result": "PASS",
+      "decision": "unknown",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0
+    },
+    {
+      "case": "missing score",
+      "result": "PASS",
+      "decision": "unknown",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0
+    },
+    {
+      "case": "string score",
+      "result": "PASS",
+      "decision": "unknown",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0
+    },
+    {
+      "case": "missing response",
+      "result": "PASS",
+      "decision": "unknown",
+      "boundaryCalls": 0,
+      "rawSignerCalls": 0,
+      "reserved": "0",
+      "payerAuthorizationSignatures": 0
+    }
+  ]
+}

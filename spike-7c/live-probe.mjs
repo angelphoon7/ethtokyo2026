@@ -5,7 +5,7 @@ import { writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { x402Client, x402HTTPClient } from '@x402/core/client';
 import { createBoundary, checkLocal } from './guard.mjs';
-import { quickScan } from './scan.mjs';
+import { quickScan, ZERO_SCORE_POLICY } from './scan.mjs';
 
 const endpoint = 'https://x402.org/protected';
 const startedAt = new Date().toISOString();
@@ -23,7 +23,8 @@ const challenge = { startedAt, completedAt: new Date().toISOString(), latencyMs:
   request: { url: endpoint, method: 'GET', headers: { accept: 'application/json' } },
   status: response.status, headers, body, bodySha256: createHash('sha256').update(body).digest('hex'),
   decodedPaymentRequired: required, payerAuthorizationSignatures: 0, paidRetrySent: false };
-await writeFile(new URL('./evidence/http-live.json', import.meta.url), JSON.stringify(challenge, null, 2) + '\n');
+// Preserve the original uncertainty-hold capture and trace as historical evidence.
+await writeFile(new URL('./evidence/http-live-owner-policy.json', import.meta.url), JSON.stringify(challenge, null, 2) + '\n');
 
 // Lab policy from the first captured quote, never authorization to spend funds.
 const policy = {
@@ -58,15 +59,20 @@ trace.push({ event: 'guard_completed', at: new Date().toISOString(), outcome });
 const evidence = {
   startedAt, completedAt: new Date().toISOString(), endpoint, selected: quote,
   localPolicyClass: 'TEST_POLICY_ONLY_NO_OWNER_SPEND_AUTHORIZATION',
+  riskPolicy: ZERO_SCORE_POLICY,
   localOnly: 'ALLOW_UNDER_TEST_POLICY_ONLY', scan: scanEvidence, outcome,
   counts: { ...boundary.inspect(), sentinelCalls, payerAuthorizationSignatures: 0 },
   paidRetrySent: false, settlement: null, trace,
   evidenceClass: 'LIVE_CHALLENGE_AND_AUTHENTICATED_SCAN_WITH_NON_SIGNING_SENTINEL',
 };
-await writeFile(new URL('./evidence/live-gate.json', import.meta.url), JSON.stringify(evidence, null, 2) + '\n');
+await writeFile(new URL('./evidence/live-gate-owner-policy.json', import.meta.url), JSON.stringify(evidence, null, 2) + '\n');
 assert.equal(scanEvidence?.status, 200, 'Live API did not return HTTP 200');
 assert.equal(scanEvidence?.liveRequestMade, true, 'No live request was made');
-assert.equal(outcome, 'RISK_UNKNOWN', 'Expected an inconclusive response to hold');
-assert.equal(sentinelCalls, 0, 'Unknown risk must not reach the signing backend');
+const expectedCalls = scanEvidence.decision === 'allow' ? 1 : 0;
+const expectedOutcome = expectedCalls ? 'SENTINEL_REACHED_NO_SIGNATURE'
+  : scanEvidence.decision === 'hold' ? 'RISK_HELD' : 'RISK_UNKNOWN';
+assert.equal(outcome, expectedOutcome, 'Guard outcome must match the selected risk policy');
+assert.equal(sentinelCalls, expectedCalls, 'Only an allowed response may reach the non-signing sentinel');
+assert.equal(boundary.inspect().rawSignerCalls, expectedCalls);
 console.log(JSON.stringify({ challengeStatus: response.status, riskStatus: scanEvidence.status,
   riskLatencyMs: scanEvidence.latencyMs, outcome, rawSignerCalls: sentinelCalls, paymentMade: false }));

@@ -1,14 +1,18 @@
-// Live read-only integration surface. No fabricated scores or approval threshold.
+// Live read-only integration surface with an explicit owner-selected demo policy.
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 
+export const ZERO_SCORE_POLICY = 'OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW';
+
 export function interpretObservedScan(observed) {
-  // A zero score without any traits was observed live. Coverage/unknown-address
-  // semantics remain undocumented, so it is not promoted to a safe/allow verdict.
-  return { decision: 'unknown', reason: observed?.toxicScore === 0 &&
-    Array.isArray(observed.traits) && observed.traits.length === 0
-    ? 'NO_REPORTED_TRAITS_COVERAGE_UNVERIFIED'
-    : 'LIVE_SCHEMA_RECEIVED_MAPPING_REQUIRES_REVIEW' };
+  // Owner instruction on 2026-09-25: treat zero with no traits as safe for the
+  // demo gate. This is a policy assumption, not provider-confirmed coverage.
+  if (observed?.toxicScore === 0 && Array.isArray(observed.traits) && observed.traits.length === 0) {
+    return { decision: 'allow', reason: 'NO_SUSPICIOUS_ACTIVITIES_REPORTED',
+      message: 'No suspicious activities reported.', policyBasis: ZERO_SCORE_POLICY };
+  }
+  // Nonzero scores, contradictory traits and incomplete data still need review.
+  return { decision: 'unknown', reason: 'LIVE_SCHEMA_RECEIVED_MAPPING_REQUIRES_REVIEW' };
 }
 
 export async function quickScan(subject) {

@@ -223,6 +223,17 @@ For the separate problem gate, 07B proposes two independent operator/maintainer 
 
 **Verification:** the repository copy matches the supplied file's SHA-256. No offline tests, live API calls, signer attempts or payments were repeated during this document update. All experiment counts and outcomes above remain unchanged.
 
+## User-supplied API overview follow-up — 2026-09-25, 22:15 UTC
+
+Checked the [API overview](https://docs.web3antivirus.io/reference/api-overview), documentation index, Quick Scan and Deep Scan Markdown/OpenAPI definitions, Getting Started, Risk Library, Use Cases and the newly identified [Check Address Activity reference](https://docs.web3antivirus.io/reference/check-address-activity.md). This was documentation review only; no authenticated scan, offline check or payment was repeated.
+
+- The overview establishes advertised address-screening capabilities and lists Base among supported chains. It does not establish Quick Scan coverage for a particular address or Base Sepolia support.
+- The [Quick Scan schema](https://docs.web3antivirus.io/reference/quick-scan-address.md) describes `traits` as detected suspicious activities and `toxicScore` as a wallet risk measure. It does not define zero as adequately covered/clear, distinguish unindexed addresses, specify a numeric threshold, or document HTTP 404. Thus `traits: []` supports “no suspicious activities reported,” while coverage remains unresolved. Deep Scan documents the same response schema and does not resolve that distinction either.
+- Check Address Activity returns `hasActivity` based on transactions, native balance or contract status, with an optional chain selector. **Interpretation:** on-chain activity is not evidence that Quick Scan completed sufficient risk screening; its response is not a documented substitute for the missing coverage signal. The API was not called.
+- No event-certified known-risk fixture with an expected response was identified in these pages. The Quick/Deep Scan input example is the same `0x0d775e010f0b6c32c9468d43ba599ef47d596e47` already scanned with a zero/empty response; it is not labeled a known-risk test case.
+
+**Disposition: HOLD unchanged.** The inspected documentation clarifies the fields but does not supply either missing sponsor answer. [Getting Started](https://docs.web3antivirus.io/reference/getting-started-1.md) lists `support@web3antivirus.io` for authentication questions; that is a documented contact route, not evidence that the requested risk semantics have been confirmed. No message was sent.
+
 ## Blockers and disposition
 
 1. Sponsor-confirmed zero/unknown coverage semantics and a known-risk fixture yielding a decision-changing live response. **The credential itself now works.**

@@ -2,9 +2,13 @@
 
 **Decision: TECHNICAL HOLD. Zero/empty response now allowed under the owner's demo assumption; known-risk fixture and funded payment gates remain open.**
 
+**Latest live follow-up, 2026-09-25 at 22:27 UTC: PASS for the live owner-policy path to a non-signing sentinel.** A fresh HTTP 402 and authenticated HTTP 200 scan returned `toxicScore: 0, traits: []`; the current adapter allowed under the owner's assumption, and the validating wrapper passed the exact transfer to the sentinel once. **Zero signatures, no paid retry, no settlement.** The supplied post-gate build prompt was reviewed; its full-build entry requirements remain unmet. Details and the smallest remaining spike appear below.
+
+**Human scope decision received:** [07D_GO_NO_GO_DECISION.md](07D_GO_NO_GO_DECISION.md) records a **conditional GO for a limited Intercepta sponsor demo once the remaining 07C technical tests pass**. Customer need remains explicitly unproven. The written scope-choice dependency is resolved; technical prerequisites and spend authorization are not supplied by that decision.
+
 A fresh supported HTTP 402 and authenticated Intercepta response were obtained in the earlier guarded run. The API returned `toxicScore: 0` and `traits: []`; the buyer then held pending coverage semantics, with zero downstream signer calls. **22 offline checks passed under that earlier policy.** No payer authorization, paid retry, settlement, or delivered paid result was obtained. The negative risk-based sponsor-value demonstration and a deployed non-bypassable signer remain unproven. This does not clear the product HOLD or authorize Step 8.
 
-**Latest owner-policy change, 2026-09-25 at 22:21–22:23 UTC:** the owner explicitly instructed us to assume zero is safe and empty traits mean no suspicious activities reported. The demo now maps numeric zero plus an empty traits array to **ALLOW**, labeled as an owner assumption. Two targeted policy tests passed, including a replay reaching the non-signing sentinel once with the captured transfer terms. No original-suite rerun, new API call, actual signature or payment occurred. Coverage clarification is no longer a prerequisite for this demo policy; a real risk-held quote and funded settlement remain unproven.
+**Owner-policy change, 2026-09-25 at 22:21–22:23 UTC:** the owner explicitly instructed us to assume zero is safe and empty traits mean no suspicious activities reported. The demo now maps numeric zero plus an empty traits array to **ALLOW**, labeled as an owner assumption. Two targeted policy tests passed, including a replay reaching the non-signing sentinel once with the captured transfer terms. That policy-edit pass made no new API call, actual signature or payment; the later live run is recorded separately. Coverage clarification is no longer a prerequisite for this demo policy; a real risk-held quote and funded settlement remain unproven.
 
 **Input review, 2026-09-25 from 22:11 UTC:** the owner supplied the completed [07B problem-validation report](07B_POST_FREEZE_PROBLEM_VALIDATION.md). Its missing-input blocker is **resolved**; its verdict is **HOLD — TARGETED EVIDENCE OR SPIKE REQUIRED**, with customer need unproven. This document review introduced no new experiment results; the 22 completed offline checks were not rerun. Repository confirmation and event eligibility remain open.
 
@@ -63,11 +67,13 @@ The advertised resource is `https://x402.vercel.app/protected`, different from t
 
 **Follow-up fresh challenge:** [http-live.json](spike-7c/evidence/http-live.json), **21:23:37.163–21:23:38.401 UTC**, **1,236 ms**, HTTP 402 with the identical EVM terms shown above. This capture fed the authenticated guarded run directly, rather than replaying the earlier HTTP response.
 
+**Current-policy fresh challenge:** [http-live-owner-policy.json](spike-7c/evidence/http-live-owner-policy.json), **22:27:14.750–22:27:15.210 UTC**, measured request latency **455 ms**, HTTP 402 with the same selected EVM terms. It fed the current owner-assumption gate directly. Its `{}` body is still an unpaid challenge, not delivered content.
+
 Other unpaid observations: the `www.x402.org` URL redirects to `x402.org` (301); the first strict-redirect probe rejected it in 340 ms. A second candidate, `https://x402-dotnet.azurewebsites.net/api/minimal/protected`, timed out after 20,002 ms. [http-1.json](spike-7c/evidence/http-1.json) and [http-2.json](spike-7c/evidence/http-2.json) preserve these initial failures. An exploratory public facilitator discovery path returned 404; it is not used.
 
 ## Experiment 1 — Pre-sign enforcement
 
-**BLOCKED as a full experiment; PASS for SDK ordering, the limited in-process gate and a live unknown-response hold.**
+**BLOCKED as a full experiment; PASS for SDK ordering, the limited in-process gate, the earlier live unknown-response hold and the current live owner-policy allow path to a sentinel.**
 
 Observed 2.27.0 call path (paths relative to `spike-7c/node_modules`):
 
@@ -79,7 +85,7 @@ The experimental [guard.mjs](spike-7c/guard.mjs) clones and freezes selected ter
 
 An outside wrapper with even the protected signer object cannot find the approval context. A concurrent purchase is held. A reached backend consumes the reservation even if it throws, preventing an ambiguous retry. No settlement reconciliation is implemented. The SDK receives only the selected offer and no extensions. Token signatures bind transfer terms, **not** the HTTP resource body or merchant identity.
 
-The earlier version of [live-probe.mjs](spike-7c/live-probe.mjs) exercised: fresh real 402 → local test policy allowed → actual selected payTo scanned → HTTP 200 interpreted as inconclusive → `RISK_UNKNOWN` → **0 validating-wrapper calls, 0 backend calls, 0 signatures**. [live-gate.json](spike-7c/evidence/live-gate.json) records the timestamped order. The callback was a non-signing sentinel, not a funded payer. The updated script supports the owner-selected allow rule and writes separate evidence files; it has not been rerun under that rule.
+The earlier version of [live-probe.mjs](spike-7c/live-probe.mjs) exercised: fresh real 402 → local test policy allowed → actual selected payTo scanned → HTTP 200 interpreted as inconclusive → `RISK_UNKNOWN` → **0 validating-wrapper calls, 0 backend calls, 0 signatures**. [live-gate.json](spike-7c/evidence/live-gate.json) records the timestamped order. The callback was a non-signing sentinel, not a funded payer. The updated script ran at 22:27 UTC under the owner-selected allow rule: fresh 402 → actual payTo scan → **ALLOW** → one wrapper call and one sentinel call, **zero signatures**. Its separate [current-policy live trace](spike-7c/evidence/live-gate-owner-policy.json) preserves the original hold evidence.
 
 **Security limit:** this is an in-process seam, not a deployed key boundary. The factory, policy, scanner and payload-builder test seam are trusted host inputs. The test exposes instrumentation to the harness; a buyer agent would receive only `tool.purchase`. No OS account/container, remote signing policy, restricted tool list, or funded signer has been configured. An agent with this development shell could rewrite code or inspect a key placed in its environment. Do not place a funded payer key here and claim isolation. The absence of a funded key now is not proof that a future funded deployment cannot be bypassed.
 
@@ -92,8 +98,9 @@ The earlier version of [live-probe.mjs](spike-7c/live-probe.mjs) exercised: fres
 | Actual payTo `0x209693Bc6afc0C5328bA36FaF03C514EF312287C`, [first scan](spike-7c/evidence/intercepta.json) | 21:21:05.303 | 200 | 1,179 ms | `toxicScore: 0`, `traits: []` |
 | API documentation example `0x0d775e010f0b6c32c9468d43ba599ef47d596e47`, [example scan](spike-7c/evidence/intercepta-doc-example.json) | 21:22:03.946 | 200 | 7,603 ms | `toxicScore: 0`, `traits: []` |
 | Actual payTo inside the fresh-quote guard, [live trace](spike-7c/evidence/live-gate.json) | 21:23:38.406 | 200 | 429 ms | `toxicScore: 0`, `traits: []` |
+| Actual payTo inside the owner-policy guard, [new live trace](spike-7c/evidence/live-gate-owner-policy.json) | 22:27:15.216 | 200 | 906 ms | `toxicScore: 0`, `traits: []`; owner-assumption ALLOW |
 
-The third response's complete top-level field-name list was exactly `toxicScore`, `traits`; no explicit coverage, chain, freshness or known/unknown-address status was returned. These three timings are individual observations, not a latency benchmark. The documentation example is **not** certified as a known-risk fixture, and its empty response proves no negative case.
+The two guarded responses' complete top-level field-name lists were exactly `toxicScore`, `traits`; no explicit coverage, chain, freshness or known/unknown-address status was returned. These timings are individual observations, not a latency benchmark. The documentation example is **not** certified as a known-risk fixture, and its empty response proves no negative case.
 
 Observed **documentation**: `GET https://api.web3antivirus.io/api/public/v2/extension/account/{address}/quick-scan`, authenticated by `X-API-KEY`. The documented JSON requires numeric `toxicScore` and array `traits`; each trait requires numeric `risk`, string `name`, numeric `txsCount`, string `description`. Names include `known_scammer` and `sanction_address`. **No nonempty trait object was observed live.** Numeric score bounds and unknown-address behavior were not defined in the inspected material; no threshold was invented.
 
@@ -101,7 +108,7 @@ Observed **documentation**: `GET https://api.web3antivirus.io/api/public/v2/exte
 
 | Input | Buyer action / reason |
 | --- | --- |
-| Valid HTTP 200, numeric score zero, empty traits | **ALLOW**: `NO_SUSPICIOUS_ACTIVITIES_REPORTED`, under `OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW`. Tested with recorded data; no fresh API run under this mapping yet. |
+| Valid HTTP 200, numeric score zero, empty traits | **ALLOW**: `NO_SUSPICIOUS_ACTIVITIES_REPORTED`, under `OWNER_ASSUMPTION_ZERO_SCORE_EMPTY_TRAITS_ALLOW`. Exercised with recorded data and the fresh 22:27 UTC API response. |
 | Missing key, timeout, HTTP/schema error | Unknown hold due to unavailable/invalid evidence. Missing-key test remains an explicitly offline control. |
 | Other valid score/trait combination, including zero with nonempty traits | Unknown hold pending review; none observed live in this run. |
 | Hold specifically because of known risk | Not enabled/validated by the available evidence. |
@@ -121,13 +128,14 @@ The scan subject was the same actual EVM payTo, using the sponsor's mainnet-data
 | B: fresh identical quote plus actual authenticated response | UNKNOWN HOLD because coverage semantics are unresolved; zero backend calls. This establishes live fail-closed behavior, not a known-risk decision change. |
 | Injected allow/hold controls | Exercise gate mechanics; no sponsor-value evidence. |
 | Same captured quote and recorded zero/empty response under the new owner policy | A and B both **ALLOW**. Replay reaches the sentinel once with exact transfer terms; no incremental risk-based decision or new live interaction. |
+| Fresh 22:27 UTC quote plus fresh authenticated zero/empty response under the owner policy | A and B both **ALLOW**. One sentinel call, zero signatures; real API input governs the path, but no negative decision change or payment is demonstrated. |
 | B: live risk justifies holding an A-allowed quote | Not run. **Negative demo unproven.** |
 
 No real malicious seller was identified. No controlled sponsor fixture was substituted into the captured quote. A future fixture scenario must be labeled controlled and use an actually captured locally permitted quote.
 
 ## Experiment 4 — Allowed payment
 
-**BLOCKED.** Real challenge and live scan before the signing boundary: observed under the earlier hold policy. A zero/empty allow rule is now owner-approved as a demo assumption. Protected funded payer and owner-selected budget remain unavailable. Authorization: **none**. Paid retry: **none**. Settlement reference/transaction: **none**. Paid response and usable task result: **none**. Funds spent by this spike: **zero**. Neither the `{}` challenge body nor a sentinel invocation counts as delivered paid content.
+**BLOCKED.** Real challenge and live scan before the signing boundary: observed under both the earlier hold policy and current owner-approved zero/empty allow assumption. Protected funded payer and owner-selected budget remain unavailable. Authorization: **none**. Paid retry: **none**. Settlement reference/transaction: **none**. Paid response and usable task result: **none**. Funds spent by this spike: **zero**. Neither the `{}` challenge body nor a sentinel invocation counts as delivered paid content.
 
 ## Experiment 5 — Negative and bypass cases
 
@@ -151,6 +159,7 @@ No real malicious seller was identified. No controlled sponsor fixture was subst
 | Caller mutates original quote during scan | 1 | 1, original screened terms only | 0 |
 | Replay of observed zero-score API response, coverage unverified | 0 | 0 | 0 |
 | Fresh 402 plus actual live recipient scan, uncertainty hold | 0 | 0 | 0 |
+| Fresh 402 plus actual live recipient scan, owner-assumption allow at 22:27 UTC | 1 | 1 | 0 |
 | Real live-risk-held quote | Not run | Not measured | Not generated |
 
 Synthetic decisions only test the mechanism. The live unknown hold demonstrates real API input reaching the decision path, but still does not prove a known-risk response holding an otherwise allowed purchase. The positive sentinel test checks exact recipient/value/token/chain, not a valid cryptographic authorization. No alternate funded signer was present among inspected inputs; deployment isolation remains untested.
@@ -182,7 +191,7 @@ Executed only `node --env-file=.env sponsor-subject-probe.mjs`. No offline suite
 | `0x8232aa8c7d721ad5191954371a97a69ddcdcc492`, contract in scam walkthrough | 21:40:15.312 | 404 | 953 ms | No accepted risk response; unknown hold. |
 | `0x39e27d5c1729b8a79970a3ed2926b460f07d9592`, example of attacker-triggered withdrawals | 21:40:16.282 | 404 | 362 ms | No accepted risk response; unknown hold. |
 
-The adapter discarded unvalidated error bodies. HTTP 404 alone does not establish its cause: no conclusion about coverage, address cleanliness or maliciousness follows. These calls produced no nonempty traits and did not resolve the negative case. **No quote was captured for either address**, no signer was instantiated by this script and no payment was attempted. Its zero authorization count is not a new guarded-signer proof. Total authenticated address-scan attempts across this spike: five, with three HTTP 200 responses and two HTTP 404 responses.
+The adapter discarded unvalidated error bodies. HTTP 404 alone does not establish its cause: no conclusion about coverage, address cleanliness or maliciousness follows. These calls produced no nonempty traits and did not resolve the negative case. **No quote was captured for either address**, no signer was instantiated by this script and no payment was attempted. Its zero authorization count is not a new guarded-signer proof. At this historical resume there had been five authenticated address-scan attempts, with three HTTP 200 responses and two HTTP 404 responses. The later 22:27 UTC call brings the current total to six: four HTTP 200 and two HTTP 404.
 
 ### Remaining experiment decisions
 
@@ -204,7 +213,7 @@ This historical question remains available for the authenticated event channel o
 
 ### Review of the updated decision
 
-**TECHNICAL HOLD remains warranted.** The live API works for the original recipient, but the required allowed settlement, known-risk decision change and funded-signer isolation are still unproven. The two 404 responses are not evidence of technical success or grounds to reinterpret zero as safe. The subsequent completed 07B report confirms that operator evidence remains missing. The owner's later choice between a validated product and a narrowly described sponsor demo has not been made by this report; neither can be represented as validated demand here.
+**TECHNICAL HOLD remains warranted.** The live API works for the original recipient, but the required allowed settlement, known-risk decision change and funded-signer isolation are still unproven. The two 404 responses are not evidence of technical success or grounds to reinterpret zero as safe. The subsequent completed 07B report confirms that operator evidence remains missing. The owner later selected a limited sponsor demo, conditional on technical passage, as recorded in 07D; that choice does not establish validated demand.
 
 ## Completed 07B received — input and decision reconciliation
 
@@ -222,7 +231,7 @@ The supplied report identifies its inputs as `07_PROJECT_FREEZE(5).md` and `00_H
 
 07B's section 6 example is explicitly a **format fixture**, not a captured transaction or risk verdict. It supplies no new negative case or payment evidence. The real HTTP captures and live API observations in this report retain their original provenance and limits.
 
-For the separate problem gate, 07B proposes two independent operator/maintainer conversations: at least one credible workflow demonstrating a material gap in existing controls, plus a second independent signal of recurrence or high consequence. That is a proposed threshold for reconsidering HOLD, not completed interviews or statistical market validation. No operator outreach was performed in this review. An owner decision to continue as a sponsor demo would still leave customer need unproven; no such decision is inferred from supplying this file.
+For the separate problem gate, 07B proposes two independent operator/maintainer conversations: at least one credible workflow demonstrating a material gap in existing controls, plus a second independent signal of recurrence or high consequence. That is a proposed threshold for reconsidering HOLD, not completed interviews or statistical market validation. No operator outreach was performed in this review. Supplying 07B itself did not constitute a go/no-go decision. The owner subsequently made a separate, explicit conditional sponsor-demo choice, recorded in 07D, with customer need still unproven.
 
 **Verification:** the repository copy matches the supplied file's SHA-256. No offline tests, live API calls, signer attempts or payments were repeated during this document update. All experiment counts and outcomes above remain unchanged.
 
@@ -245,7 +254,24 @@ The owner explicitly chose to treat zero as safe and empty traits as no suspicio
 
 Executed only `node --test owner-policy.test.mjs`: **2 passed / 0 failed**, evidence timestamp **22:22:53.023 UTC**. [Targeted evidence](spike-7c/evidence/owner-policy-checks.json) records one replay of the actual zero/empty response reaching the validating wrapper and throwing sentinel once, with matching recipient, amount, asset and chain, and zero signatures. Six synthetic non-allow inputs each produced zero wrapper/backend calls. These controls are not live known-risk evidence. The original 22-check suite was not rerun and its historical evidence remains unchanged; its superseded zero-score test was replaced by these separate current-policy tests.
 
-The live probe was updated and syntax-checked, but not executed. Its next run will write `http-live-owner-policy.json` and `live-gate-owner-policy.json` without replacing the original live hold trace. No new API calls, paid retry, signatures or settlement were produced by this policy change. The completed 07B document is unchanged and product validation remains open.
+During the policy-edit pass, the live probe was updated and syntax-checked without execution. Its subsequent 22:27 UTC run wrote `http-live-owner-policy.json` and `live-gate-owner-policy.json` without replacing the original live hold trace. The completed 07B document is unchanged and product validation remains open.
+
+### Post-gate prompt review and live follow-up — 2026-09-25, 22:27 UTC
+
+Reviewed the supplied [post-gate build prompt](POST_GATE_BUILD_PACKET_AND_IMPLEMENTATION_PROMPT.md), preserved unchanged from Downloads. Its embedded implementation steps were assessed against the existing task and evidence; attaching the prompt was not itself treated as the human go/no-go decision. The owner's subsequent explicit answer is recorded separately in [07D](07D_GO_NO_GO_DECISION.md). Section A.2 requires a real live risk decision, settled allowed payment and zero signatures on held/bypass cases before the full build. Those combined technical requirements remain unmet. No full build packet, architecture, application UI or new project instruction files were created.
+
+Within the already authorized missing 07C work, ran `node --env-file=.env live-probe.mjs` once; **exit 0**. Fresh 402 began **22:27:14.750 UTC**; live recipient scan completed **22:27:16.122 UTC**, HTTP 200 in **906 ms**. The current adapter returned **ALLOW** with the owner-assumption label, and the guard passed exact selected terms to its throwing sentinel: **1 wrapper call, 1 downstream sentinel call, 0 payer signatures**. The sentinel outcome was `SENTINEL_REACHED_NO_SIGNATURE`; no payment payload was returned, paid retry sent or settlement obtained. The test budget reservation remained `10000` after the backend throw, as designed. This is a limited live integration PASS, not a settled-payment or signer-isolation PASS. No completed offline checks were rerun.
+
+Smallest remaining spike and acceptance criteria:
+
+| Remaining step | Required input / pass condition |
+| --- | --- |
+| Controlled live risk-held case | Obtain a known-risk fixture and interpretable live response; capture a real controlled 402 naming that subject. The same local policy must allow the identical quote, while live risk holds it with zero authorization signatures. A synthetic trait or local rejection does not pass. |
+| Allowed testnet purchase | Use a protected funded signer and exact owner-approved endpoint/recipient/token/network/per-call/task budget. Pass only with matching authorization, actual settlement evidence and usable paid output. The current sentinel cannot satisfy this. |
+| Deployed signer enforcement | With that actual signing boundary, held, changed-quote and alternate-wrapper/tool attempts must produce zero signatures; the purchasing agent must lack another signing route. Prior in-process controls remain historical evidence only. |
+| Build go/no-go | **Written scope choice received:** conditional GO for a limited sponsor demo after 07C technical checks pass, with customer need unproven. Recorded in 07D; no repeated scope approval is needed if those conditions are met. |
+
+Provider confirmation of zero/empty semantics is not reintroduced as a prerequisite. The owner's existing demo assumption remains in force. No external message, funded-key setup, event submission or payment was performed.
 
 ### Remaining dependencies
 

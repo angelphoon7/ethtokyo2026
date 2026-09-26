@@ -178,8 +178,9 @@ async function main() {
   const policy = process.env.SIGNER_POLICY_JSON
     ? JSON.parse(process.env.SIGNER_POLICY_JSON) : JSON.parse(readFileSync(`${dir}/owner-policy.json`, 'utf8'));
   ensure(!policy.ownerCapAtomic || BigInt(policy.taskBudget) <= BigInt(policy.ownerCapAtomic), 'POLICY_EXCEEDS_OWNER_CAP');
-  let privateKey = process.env.PAYER_PRIVATE_KEY;
+  let privateKey = process.env.PAYER_PRIVATE_KEY?.trim();
   delete process.env.PAYER_PRIVATE_KEY;
+  if (privateKey && /^[0-9a-fA-F]{64}$/.test(privateKey)) privateKey = `0x${privateKey}`;
   const ephemeral = process.env.SIGNER_EPHEMERAL === '1';
   if (ephemeral) privateKey = generatePrivateKey();
   ensure(privateKey && /^0x[0-9a-fA-F]{64}$/.test(privateKey), 'PAYER_KEY_MISSING_OR_MALFORMED');

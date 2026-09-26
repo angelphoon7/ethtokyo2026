@@ -1,0 +1,16 @@
+{"at":"2026-09-26T00:10:56.896Z","event":"signer_started","address":"0x4a599d033E1295E93bbFB5feA17aB44b2CbAD9fD","policyId":"owner-base-sepolia-one-payment-x402-protected","ephemeral":false}
+{"at":"2026-09-26T00:11:09.819Z","event":"sign_rejected","code":"NO_GUARD_APPROVAL"}
+{"at":"2026-09-26T00:11:09.840Z","event":"sign_rejected","code":"NO_GUARD_APPROVAL"}
+{"at":"2026-09-26T00:11:10.812Z","event":"quote_approved","quoteSha256":"af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844","subject":"0x209693Bc6afc0C5328bA36FaF03C514EF312287C","latencyMs":768,"status":200}
+{"at":"2026-09-26T00:11:10.821Z","event":"sign_rejected","code":"MUTATED_TRANSFER"}
+{"at":"2026-09-26T00:11:10.835Z","event":"sign_rejected","code":"MUTATED_TRANSFER"}
+{"at":"2026-09-26T00:11:10.850Z","event":"sign_rejected","code":"MUTATED_DOMAIN"}
+{"at":"2026-09-26T00:11:10.867Z","event":"sign_rejected","code":"MUTATED_DOMAIN"}
+{"at":"2026-09-26T00:11:10.872Z","event":"sign_rejected","code":"MUTATED_VALIDITY"}
+{"at":"2026-09-26T00:11:10.881Z","event":"sign_rejected","code":"MUTATED_TRANSFER"}
+{"at":"2026-09-26T00:11:11.025Z","event":"sign_invoked","quoteSha256":"af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844","to":"0x209693Bc6afc0C5328bA36FaF03C514EF312287C","value":"10000"}
+{"at":"2026-09-26T00:11:11.040Z","event":"signed","quoteSha256":"af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844"}
+{"at":"2026-09-26T00:11:12.119Z","event":"sign_rejected","code":"APPROVAL_CONSUMED"}
+{"at":"2026-09-26T00:11:12.257Z","event":"quote_held_local","url":"https://x402.org/protected","reason":"TASK_BUDGET"}
+{"at":"2026-09-26T00:11:12.272Z","event":"sign_rejected","code":"NO_GUARD_APPROVAL"}
+{"at":"2026-09-26T00:11:12.287Z","event":"quote_held_local","url":"https://example.com/protected","reason":"LOCAL_ENDPOINT"}

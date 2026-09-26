@@ -1,0 +1,112 @@
+{
+  "startedAt": "2026-09-26T00:11:09.415Z",
+  "completedAt": "2026-09-26T00:11:12.569Z",
+  "evidenceClass": "LIVE_FUNDED_SIGNER_PROCESS_BOUNDARY_BASE_SEPOLIA",
+  "signer": {
+    "url": "http://127.0.0.1:8402",
+    "address": "0x4a599d033E1295E93bbFB5feA17aB44b2CbAD9fD",
+    "policyId": "owner-base-sepolia-one-payment-x402-protected"
+  },
+  "policy": {
+    "policyId": "owner-base-sepolia-one-payment-x402-protected",
+    "endpoint": "https://x402.org/protected",
+    "resourceUrls": [
+      "https://x402.vercel.app/protected"
+    ],
+    "network": "eip155:84532",
+    "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "recipients": [
+      "0x209693Bc6afc0C5328bA36FaF03C514EF312287C"
+    ],
+    "perCall": "10000",
+    "taskBudget": "10000",
+    "ownerCapAtomic": "100000",
+    "maxTimeoutSeconds": 300,
+    "domainName": "USDC",
+    "domainVersion": "2"
+  },
+  "agentProcess": {
+    "hasPayerKeyEnv": false
+  },
+  "quote": {
+    "decision": "allow",
+    "quoteSha256": "af27054de9f4b677a88768fb37363a97bd7b157e46c7936ad176db5f1e503844",
+    "selected": {
+      "scheme": "exact",
+      "network": "eip155:84532",
+      "amount": "10000",
+      "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "payTo": "0x209693Bc6afc0C5328bA36FaF03C514EF312287C",
+      "maxTimeoutSeconds": 300,
+      "extra": {
+        "name": "USDC",
+        "version": "2"
+      }
+    },
+    "scan": {
+      "status": 200,
+      "latencyMs": 768,
+      "decision": "allow",
+      "reason": "NO_SUSPICIOUS_ACTIVITIES_REPORTED",
+      "toxicScore": 0,
+      "traits": []
+    }
+  },
+  "preApprovalAttempts": {
+    "noApproval": "NO_GUARD_APPROVAL",
+    "defaultAutoPayWrapper": "NO_GUARD_APPROVAL"
+  },
+  "changedQuoteRefusals": {
+    "payTo": "MUTATED_TRANSFER",
+    "amount": "MUTATED_TRANSFER",
+    "asset": "MUTATED_DOMAIN",
+    "network": "MUTATED_DOMAIN",
+    "validityLater": "MUTATED_VALIDITY",
+    "from": "MUTATED_TRANSFER"
+  },
+  "signaturesBeforeAllowedPayment": 0,
+  "payment": {
+    "at": "2026-09-26T00:11:10.899Z",
+    "httpStatus": 200,
+    "body": "<!DOCTYPE html><html data-dpl-id=\"dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\" lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/0mj3d2945i_~p.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\"/><script src=\"/_next/static/chunks/13i8obl-2om37.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\" async=\"\"></script><script src=\"/_next/static/chunks/00k5-gycn~qn7.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\" async=\"\"></script><script src=\"/_next/static/chunks/turbopack-16_zw_ilfi4u2.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\" async=\"\"></script><script src=\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\" async=\"\"></script><title>x402</title><meta name=\"description\" content=\"x402 testnet facilitator and protected content.\"/><script src=\"/_next/static/chunks/03~yq9q893hmn.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\" noModule=\"\"></script></head><body><div hidden=\"\"><!--$--><!--/$--></div><div class=\"min-h-screen flex items-center justify-center\"><div class=\"max-w-2xl mx-auto p-8\"><h1 class=\"text-4xl font-bold mb-4\">Protected Content</h1><p class=\"text-lg\">Your payment was successful! Enjoy this banger song.</p><iframe width=\"100%\" height=\"300\" scrolling=\"no\" frameBorder=\"no\" allow=\"autoplay\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2044190296&amp;color=%23ff5500&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true\"></iframe><div style=\"font-size:10px;color:#cccccc;line-break:anywhere;word-break:normal;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight:100\"><a href=\"https://soundcloud.com/dan-kim-675678711\" title=\"danXkim\" target=\"_blank\" style=\"color:#cccccc;text-decoration:none\">danXkim</a> <!-- -->·<!-- --> <a href=\"https://soundcloud.com/dan-kim-675678711/x402\" title=\"x402 (DJ Reppel Remix)\" target=\"_blank\" style=\"color:#cccccc;text-decoration:none\">x402 (DJ Reppel Remix)</a></div></div></div><!--$--><!--/$--><script src=\"/_next/static/chunks/0mj3d2945i_~p.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\" id=\"_R_\" async=\"\"></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,\"1:\\\"$Sreact.fragment\\\"\\n2:I[92578,[\\\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\\\"],\\\"default\\\"]\\n3:I[1723,[\\\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\\\"],\\\"default\\\"]\\n4:I[93305,[\\\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\\\"],\\\"OutletBoundary\\\"]\\n5:\\\"$Sreact.suspense\\\"\\n8:I[93305,[\\\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\\\"],\\\"ViewportBoundary\\\"]\\na:I[93305,[\\\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\\\"],\\\"MetadataBoundary\\\"]\\nc:I[36406,[\\\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\\\"],\\\"default\\\",1]\\n\"])</script><script>self.__next_f.push([1,\"0:{\\\"P\\\":null,\\\"c\\\":[\\\"\\\",\\\"protected\\\"],\\\"q\\\":\\\"\\\",\\\"i\\\":false,\\\"f\\\":[[[\\\"\\\",{\\\"children\\\":[\\\"protected\\\",{\\\"children\\\":[\\\"__PAGE__\\\",{}]}]},\\\"$undefined\\\",\\\"$undefined\\\",16],[[\\\"$\\\",\\\"$1\\\",\\\"c\\\",{\\\"children\\\":[[[\\\"$\\\",\\\"script\\\",\\\"script-0\\\",{\\\"src\\\":\\\"/_next/static/chunks/07o9il6ox-hrk.js?dpl=dpl_C4wof9b4ktQ2YZNqYWtE3C2ws4Cm\\\",\\\"async\\\":true,\\\"nonce\\\":\\\"$undefined\\\"}]],[\\\"$\\\",\\\"html\\\",null,{\\\"lang\\\":\\\"en\\\",\\\"children\\\":[\\\"$\\\",\\\"body\\\",null,{\\\"children\\\":[\\\"$\\\",\\\"$L2\\\",null,{\\\"parallelRouterKey\\\":\\\"children\\\",\\\"error\\\":\\\"$undefined\\\",\\\"errorStyles\\\":\\\"$undefined\\\",\\\"errorScripts\\\":\\\"$undefined\\\",\\\"template\\\":[\\\"$\\\",\\\"$L3\\\",null,{}],\\\"templateStyles\\\":\\\"$undefined\\\",\\\"templateScripts\\\":\\\"$undefined\\\",\\\"notFound\\\":[[[\\\"$\\\",\\\"title\\\",null,{\\\"children\\\":\\\"404: This page could not be found.\\\"}],[\\\"$\\\",\\\"div\\\",null,{\\\"style\\\":{\\\"fontFamily\\\":\\\"system-ui,\\\\\\\"Segoe UI\\\\\\\",Roboto,Helvetica,Arial,sans-serif,\\\\\\\"Apple Color Emoji\\\\\\\",\\\\\\\"Segoe UI Emoji\\\\\\\"\\\",\\\"height\\\":\\\"100vh\\\",\\\"textAlign\\\":\\\"center\\\",\\\"display\\\":\\\"flex\\\",\\\"flexDirection\\\":\\\"column\\\",\\\"alignItems\\\":\\\"center\\\",\\\"justifyContent\\\":\\\"center\\\"},\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"children\\\":[[\\\"$\\\",\\\"style\\\",null,{\\\"dangerouslySetInnerHTML\\\":{\\\"__html\\\":\\\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\\\"}}],[\\\"$\\\",\\\"h1\\\",null,{\\\"className\\\":\\\"next-error-h1\\\",\\\"style\\\":{\\\"display\\\":\\\"inline-block\\\",\\\"margin\\\":\\\"0 20px 0 0\\\",\\\"padding\\\":\\\"0 23px 0 0\\\",\\\"fontSize\\\":24,\\\"fontWeight\\\":500,\\\"verticalAlign\\\":\\\"top\\\",\\\"lineHeight\\\":\\\"49px\\\"},\\\"children\\\":404}],[\\\"$\\\",\\\"div\\\",null,{\\\"style\\\":{\\\"display\\\":\\\"inline-block\\\"},\\\"children\\\":[\\\"$\\\",\\\"h2\\\",null,{\\\"style\\\":{\\\"fontSize\\\":14,\\\"fontWeight\\\":400,\\\"lineHeight\\\":\\\"49px\\\",\\\"margin\\\":0},\\\"children\\\":\\\"This page could not be found.\\\"}]}]]}]}]],[]],\\\"forbidden\\\":\\\"$undefined\\\",\\\"unauthorized\\\":\\\"$undefined\\\"}]}]}]]}],{\\\"children\\\":[[\\\"$\\\",\\\"$1\\\",\\\"c\\\",{\\\"children\\\":[null,[\\\"$\\\",\\\"$L2\\\",null,{\\\"parallelRouterKey\\\":\\\"children\\\",\\\"error\\\":\\\"$undefined\\\",\\\"errorStyles\\\":\\\"$undefined\\\",\\\"errorScripts\\\":\\\"$undefined\\\",\\\"template\\\":[\\\"$\\\",\\\"$L3\\\",null,{}],\\\"templateStyles\\\":\\\"$undefined\\\",\\\"templateScripts\\\":\\\"$undefined\\\",\\\"notFound\\\":\\\"$undefined\\\",\\\"forbidden\\\":\\\"$undefined\\\",\\\"unauthorized\\\":\\\"$undefined\\\"}]]}],{\\\"children\\\":[[\\\"$\\\",\\\"$1\\\",\\\"c\\\",{\\\"children\\\":[[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"min-h-screen flex items-center justify-center\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"max-w-2xl mx-auto p-8\\\",\\\"children\\\":[[\\\"$\\\",\\\"h1\\\",null,{\\\"className\\\":\\\"text-4xl font-bold mb-4\\\",\\\"children\\\":\\\"Protected Content\\\"}],[\\\"$\\\",\\\"p\\\",null,{\\\"className\\\":\\\"text-lg\\\",\\\"children\\\":\\\"Your payment was successful! Enjoy this banger song.\\\"}],[\\\"$\\\",\\\"iframe\\\",null,{\\\"width\\\":\\\"100%\\\",\\\"height\\\":\\\"300\\\",\\\"scrolling\\\":\\\"no\\\",\\\"frameBorder\\\":\\\"no\\\",\\\"allow\\\":\\\"autoplay\\\",\\\"src\\\":\\\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2044190296\\u0026color=%23ff5500\\u0026auto_play=true\\u0026hide_related=false\\u0026show_comments=true\\u0026show_user=true\\u0026show_reposts=false\\u0026show_teaser=true\\u0026visual=true\\\"}],[\\\"$\\\",\\\"div\\\",null,{\\\"style\\\":{\\\"fontSize\\\":\\\"10px\\\",\\\"color\\\":\\\"#cccccc\\\",\\\"lineBreak\\\":\\\"anywhere\\\",\\\"wordBreak\\\":\\\"normal\\\",\\\"overflow\\\":\\\"hidden\\\",\\\"whiteSpace\\\":\\\"nowrap\\\",\\\"textOverflow\\\":\\\"ellipsis\\\",\\\"fontFamily\\\":\\\"Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif\\\",\\\"fontWeight\\\":\\\"100\\\"},\\\"children\\\":[[\\\"$\\\",\\\"a\\\",null,{\\\"href\\\":\\\"https://soundcloud.com/dan-kim-675678711\\\",\\\"title\\\":\\\"danXkim\\\",\\\"target\\\":\\\"_blank\\\",\\\"style\\\":{\\\"color\\\":\\\"#cccccc\\\",\\\"textDecoration\\\":\\\"none\\\"},\\\"children\\\":\\\"danXkim\\\"}],\\\" \\\",\\\"·\\\",\\\" \\\",[\\\"$\\\",\\\"a\\\",null,{\\\"href\\\":\\\"https://soundcloud.com/dan-kim-675678711/x402\\\",\\\"title\\\":\\\"x402 (DJ Reppel Remix)\\\",\\\"target\\\":\\\"_blank\\\",\\\"style\\\":{\\\"color\\\":\\\"#cccccc\\\",\\\"textDecoration\\\":\\\"none\\\"},\\\"children\\\":\\\"x402 (DJ Reppel Remix)\\\"}]]}]]}]}],null,[\\\"$\\\",\\\"$L4\\\",null,{\\\"children\\\":[\\\"$\\\",\\\"$5\\\",null,{\\\"name\\\":\\\"Next.MetadataOutlet\\\",\\\"children\\\":\\\"$@6\\\"}]}]]}],{},null,false,null]},null,false,\\\"$@7\\\"]},null,false,null],[\\\"$\\\",\\\"$1\\\",\\\"h\\\",{\\\"children\\\":[null,[\\\"$\\\",\\\"$L8\\\",null,{\\\"children\\\":\\\"$L9\\\"}],[\\\"$\\\",\\\"div\\\",null,{\\\"hidden\\\":true,\\\"children\\\":[\\\"$\\\",\\\"$La\\\",null,{\\\"children\\\":[\\\"$\\\",\\\"$5\\\",null,{\\\"name\\\":\\\"Next.Metadata\\\",\\\"children\\\":\\\"$Lb\\\"}]}]}],null]}],false]],\\\"m\\\":\\\"$undefined\\\",\\\"G\\\":[\\\"$c\\\",[]],\\\"S\\\":true,\\\"h\\\":null,\\\"s\\\":\\\"$undefined\\\",\\\"l\\\":\\\"$undefined\\\",\\\"p\\\":\\\"$undefined\\\",\\\"d\\\":\\\"$undefined\\\"}\\n\"])</script><script>self.__next_f.push([1,\"d:[]\\n7:\\\"$Wd\\\"\\n\"])</script><script>self.__next_f.push([1,\"9:[[\\\"$\\\",\\\"meta\\\",\\\"0\\\",{\\\"charSet\\\":\\\"utf-8\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"1\\\",{\\\"name\\\":\\\"viewport\\\",\\\"content\\\":\\\"width=device-width, initial-scale=1\\\"}]]\\n\"])</script><script>self.__next_f.push([1,\"6:null\\nb:[[\\\"$\\\",\\\"title\\\",\\\"0\\\",{\\\"children\\\":\\\"x402\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"1\\\",{\\\"name\\\":\\\"description\\\",\\\"content\\\":\\\"x402 testnet facilitator and protected content.\\\"}]]\\n\"])</script></body></html>",
+    "settlement": {
+      "success": true,
+      "payer": "0x4a599d033E1295E93bbFB5feA17aB44b2CbAD9fD",
+      "transaction": "0x306b625e697942b3eed6a6c5e2f18a999cac7f08e9686fecb7034cc79fc5ca62",
+      "network": "eip155:84532"
+    },
+    "explorer": "https://sepolia.basescan.org/tx/0x306b625e697942b3eed6a6c5e2f18a999cac7f08e9686fecb7034cc79fc5ca62"
+  },
+  "onchain": {
+    "receiptStatus": "0x1",
+    "blockNumber": "47306592",
+    "matchingUsdcTransfer": true
+  },
+  "balances": {
+    "beforeAtomic": "20000000",
+    "afterAtomic": "19990000",
+    "deltaAtomic": "10000"
+  },
+  "postPaymentAttempts": {
+    "replayConsumedApproval": "APPROVAL_CONSUMED",
+    "secondQuote": "TASK_BUDGET",
+    "noApprovalAgain": "NO_GUARD_APPROVAL",
+    "otherEndpoint": "LOCAL_ENDPOINT",
+    "exportKeyRoute": "NOT_FOUND"
+  },
+  "signerStatsFinal": {
+    "status": 200,
+    "quoteRequests": 3,
+    "approvals": 1,
+    "holds": 2,
+    "signRequests": 11,
+    "signRejected": 10,
+    "signerInvocations": 1,
+    "signatures": 1,
+    "reserved": "10000"
+  },
+  "isolation": {
+    "processBoundary": true,
+    "osAccountBoundary": false
+  }
+}
